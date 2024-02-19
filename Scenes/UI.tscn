@@ -1,0 +1,433 @@
+[gd_scene load_steps=11 format=3 uid="uid://deslymf6pdlx7"]
+
+[sub_resource type="Gradient" id="Gradient_dhj0r"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0133333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gcvo3"]
+gradient = SubResource("Gradient_dhj0r")
+width = 256
+height = 128
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_fw2bd"]
+offsets = PackedFloat32Array(0.0133333, 0.06)
+colors = PackedColorArray(0.783523, 0.783523, 0.783523, 1, 0.886262, 0.886261, 0.886262, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_krbom"]
+gradient = SubResource("Gradient_fw2bd")
+width = 256
+height = 128
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_nbiw7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0pp0w"]
+gradient = SubResource("Gradient_nbiw7")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_kcoob"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wd8ci"]
+gradient = SubResource("Gradient_kcoob")
+width = 32
+height = 32
+fill = 2
+
+[sub_resource type="Gradient" id="Gradient_f43rj"]
+colors = PackedColorArray(0, 0, 0, 1, 0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ughcv"]
+gradient = SubResource("Gradient_f43rj")
+width = 256
+height = 128
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.088785, 0.878505)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 277.0
+offset_top = 146.0
+offset_right = 277.0
+offset_bottom = 146.0
+scale = Vector2(2.78125, 1.625)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 128.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gcvo3")
+
+[node name="Dialogue" type="RichTextLabel" parent="CanvasLayer/DialogueBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 248.0
+offset_bottom = 122.0
+bbcode_enabled = true
+text = "That is so cool"
+
+[node name="LogBox" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -99.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_gcvo3")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/LogBox"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 249.0
+offset_bottom = 95.0
+bbcode_enabled = true
+text = "This is so NOT cool
+or is it?
+or is it?
+or is it?
+or is it?
+or is it?"
+scroll_following = true
+
+[node name="Character" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_gcvo3")
+expand_mode = 1
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/Character"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -166.0
+offset_right = -3.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_krbom")
+expand_mode = 1
+
+[node name="HP" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 100.0
+offset_right = 29.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 11
+text = "HP"
+
+[node name="HP_VALUE" type="Label" parent="CanvasLayer/Character/HP"]
+layout_mode = 0
+offset_left = 23.0
+offset_right = 47.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="SAN" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 30.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 11
+text = "SAN"
+
+[node name="SAN_VALUE" type="Label" parent="CanvasLayer/Character/SAN"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 46.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="MANA" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 100.0
+offset_right = 96.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 11
+text = "MANA"
+
+[node name="MANA_VALUE" type="Label" parent="CanvasLayer/Character/MANA"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 56.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="COR" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 116.0
+offset_right = 86.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 11
+text = "COR"
+
+[node name="MANA_VALUE" type="Label" parent="CanvasLayer/Character/COR"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 56.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="Line" type="TextureRect" parent="CanvasLayer/Character"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -36.0
+offset_right = -3.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_krbom")
+expand_mode = 1
+
+[node name="STR" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 135.0
+offset_right = 30.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 11
+text = "STR"
+
+[node name="STR_VALUE" type="Label" parent="CanvasLayer/Character/STR"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="SPD" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 151.0
+offset_right = 30.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 11
+text = "SPD"
+
+[node name="SPD_VALUE" type="Label" parent="CanvasLayer/Character/SPD"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 46.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="INT" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 135.0
+offset_right = 96.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 11
+text = "INT"
+
+[node name="INT_VALUE" type="Label" parent="CanvasLayer/Character/INT"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 56.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="WIS" type="Label" parent="CanvasLayer/Character"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 151.0
+offset_right = 86.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 11
+text = "WIS"
+
+[node name="WIS_VALUE" type="Label" parent="CanvasLayer/Character/WIS"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 56.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+horizontal_alignment = 2
+
+[node name="Equipment" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 279.0
+offset_top = -30.0
+offset_right = 319.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/Equipment"]
+layout_mode = 0
+offset_left = -118.0
+offset_top = -88.0
+offset_right = -41.0
+offset_bottom = 40.0
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
+
+[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer/Equipment/ItemList"]
+size = Vector2i(107, 100)
+visible = true
+allow_search = false
+item_count = 2
+item_0/text = "Use/Equip"
+item_0/id = 0
+item_1/text = "Examine"
+item_1/id = 1
+
+[node name="Inventory" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 239.0
+offset_top = -30.0
+offset_right = 279.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/Inventory"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = -88.0
+offset_right = -1.0
+offset_bottom = 40.0
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
+
+[node name="Menu" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 153.0
+offset_top = 140.0
+offset_right = 193.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_wd8ci")
+stretch_mode = 0
+
+[node name="InteractionButtonBar" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -134.0
+offset_right = 115.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_ughcv")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InteractionButtonBar"]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 35.0
+alignment = 1
+
+[node name="Attack" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="Inspect" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="Something" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="Stuff" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="Uhh" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
+
+[node name="I dunno" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_0pp0w")
+stretch_mode = 0
