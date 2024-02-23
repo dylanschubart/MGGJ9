@@ -93,7 +93,7 @@ grow_vertical = 0
 texture = SubResource("GradientTexture2D_gcvo3")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/LogBox"]
+[node name="Log" type="RichTextLabel" parent="CanvasLayer/LogBox"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 3.0
@@ -121,7 +121,7 @@ grow_vertical = 0
 texture = SubResource("GradientTexture2D_gcvo3")
 expand_mode = 1
 
-[node name="Character" type="TextureRect" parent="CanvasLayer/Character"]
+[node name="Character_image" type="TextureRect" parent="CanvasLayer/Character"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

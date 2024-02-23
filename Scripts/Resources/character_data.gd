@@ -4,8 +4,10 @@ extends Resource
 #name
 @export var name:String
 #rpg-resources
-@export var hitpoints:int
-@export var mana:int
+@export var maxhitpoints:int
+@export var maxmana:int
+@export var curhitpoints:int
+@export var curmana:int
 @export var sanity:int
 @export var corruption:int
 #stats

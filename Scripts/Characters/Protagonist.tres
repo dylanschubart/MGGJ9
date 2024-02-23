@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://51hwvto6hhhk"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/character_data.gd" id="1_sqq1n"]
+
+[resource]
+script = ExtResource("1_sqq1n")
+name = "Protagonist"
+maxhitpoints = 10
+maxmana = 10
+curhitpoints = 10
+curmana = 10
+sanity = 0
+corruption = 0
+strength = 2
+intelligence = 6
+speed = 3
+wisdom = 5

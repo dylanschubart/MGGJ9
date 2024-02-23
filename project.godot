@@ -19,7 +19,13 @@ config/icon="res://icon.svg"
 
 SaveManager="*res://Scripts/Managers/save_manager.gd"
 SceneManager="*res://Scripts/Managers/scene_manager.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+DialogueManager="*res://Scripts/Managers/dialogue_manager.gd"
+CombatManager="*res://Scripts/Managers/combat_manager.gd"
+EquipmentManager="*res://Scripts/Managers/Equipment_manager.gd"
+InventoryManager="*res://Scripts/Managers/inventory_manager.gd"
+LogManager="*res://Scripts/Managers/log_manager.gd"
+StatsManager="*res://Scripts/Managers/stats_manager.gd"
+UiManager="*res://Scripts/Managers/ui_manager.gd"
 
 [display]
 
