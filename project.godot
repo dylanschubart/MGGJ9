@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 SaveManager="*res://Scripts/Managers/save_manager.gd"
 SceneManager="*res://Scripts/Managers/scene_manager.gd"
-DialogueManager="*res://Scripts/Managers/dialogue_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CombatManager="*res://Scripts/Managers/combat_manager.gd"
 EquipmentManager="*res://Scripts/Managers/Equipment_manager.gd"
 InventoryManager="*res://Scripts/Managers/inventory_manager.gd"
@@ -38,3 +38,8 @@ window/stretch/mode="canvas_items"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/bettertopbar/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/horizontal_file_system/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/lossless_compression/force_png=true

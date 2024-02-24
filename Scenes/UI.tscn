@@ -1,14 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://deslymf6pdlx7"]
+[gd_scene load_steps=10 format=3 uid="uid://deslymf6pdlx7"]
 
-[sub_resource type="Gradient" id="Gradient_dhj0r"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.0133333, 1)
+[ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
+[ext_resource type="Texture2D" uid="uid://b385t4ocgpmua" path="res://Assets/UI/LogWindow.png" id="2_tmlwh"]
+[ext_resource type="Texture2D" uid="uid://bx4fjkwl7mrtq" path="res://Assets/UI/CharacterSheet.png" id="3_txeda"]
+[ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="4_5a1yg"]
+[ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="5_28ulr"]
+[ext_resource type="Texture2D" uid="uid://dnywpmk10p3kg" path="res://Assets/UI/SkillBar.png" id="6_eutvf"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gcvo3"]
-gradient = SubResource("Gradient_dhj0r")
-width = 256
-height = 128
-fill_from = Vector2(1, 0)
+[sub_resource type="Theme" id="Theme_payir"]
 
 [sub_resource type="Gradient" id="Gradient_fw2bd"]
 offsets = PackedFloat32Array(0.0133333, 0.06)
@@ -20,31 +19,6 @@ width = 256
 height = 128
 fill_from = Vector2(1, 0)
 
-[sub_resource type="Gradient" id="Gradient_nbiw7"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0pp0w"]
-gradient = SubResource("Gradient_nbiw7")
-width = 32
-height = 32
-
-[sub_resource type="Gradient" id="Gradient_kcoob"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wd8ci"]
-gradient = SubResource("Gradient_kcoob")
-width = 32
-height = 32
-fill = 2
-
-[sub_resource type="Gradient" id="Gradient_f43rj"]
-colors = PackedColorArray(0, 0, 0, 1, 0.147672, 0.147672, 0.147672, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ughcv"]
-gradient = SubResource("Gradient_f43rj")
-width = 256
-height = 128
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0.088785, 0.878505)
-
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -53,6 +27,7 @@ offset_top = 146.0
 offset_right = 277.0
 offset_bottom = 146.0
 scale = Vector2(2.78125, 1.625)
+theme = SubResource("Theme_payir")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -68,14 +43,14 @@ offset_right = 128.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_gcvo3")
+texture = ExtResource("1_chds7")
 
 [node name="Dialogue" type="RichTextLabel" parent="CanvasLayer/DialogueBox"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 3.0
-offset_right = 248.0
-offset_bottom = 122.0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 246.0
+offset_bottom = 163.0
 bbcode_enabled = true
 text = "That is so cool"
 
@@ -90,14 +65,14 @@ offset_top = -99.0
 offset_right = 128.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_gcvo3")
+texture = ExtResource("2_tmlwh")
 expand_mode = 1
 
 [node name="Log" type="RichTextLabel" parent="CanvasLayer/LogBox"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 3.0
-offset_right = 249.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 245.0
 offset_bottom = 95.0
 bbcode_enabled = true
 text = "This is so NOT cool
@@ -118,7 +93,7 @@ offset_left = -126.0
 offset_top = -170.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_gcvo3")
+texture = ExtResource("3_txeda")
 expand_mode = 1
 
 [node name="Character_image" type="TextureRect" parent="CanvasLayer/Character"]
@@ -128,21 +103,21 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -166.0
-offset_right = -3.0
-offset_bottom = -72.0
+offset_left = -104.0
+offset_top = -164.0
+offset_right = 37.0
+offset_bottom = -53.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_krbom")
-expand_mode = 1
+texture = ExtResource("4_5a1yg")
+stretch_mode = 4
 
 [node name="HP" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 100.0
-offset_right = 29.0
-offset_bottom = 123.0
+offset_left = 8.0
+offset_top = 118.0
+offset_right = 32.0
+offset_bottom = 141.0
 theme_override_font_sizes/font_size = 11
 text = "HP"
 
@@ -158,10 +133,10 @@ horizontal_alignment = 2
 
 [node name="SAN" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 116.0
-offset_right = 30.0
-offset_bottom = 139.0
+offset_left = 9.0
+offset_top = 134.0
+offset_right = 33.0
+offset_bottom = 157.0
 theme_override_font_sizes/font_size = 11
 text = "SAN"
 
@@ -177,10 +152,10 @@ horizontal_alignment = 2
 
 [node name="MANA" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 100.0
-offset_right = 96.0
-offset_bottom = 123.0
+offset_left = 65.0
+offset_top = 118.0
+offset_right = 99.0
+offset_bottom = 141.0
 theme_override_font_sizes/font_size = 11
 text = "MANA"
 
@@ -196,10 +171,10 @@ horizontal_alignment = 2
 
 [node name="COR" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 116.0
-offset_right = 86.0
-offset_bottom = 139.0
+offset_left = 65.0
+offset_top = 134.0
+offset_right = 89.0
+offset_bottom = 157.0
 theme_override_font_sizes/font_size = 11
 text = "COR"
 
@@ -220,10 +195,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -36.0
-offset_right = -3.0
-offset_bottom = -35.0
+offset_left = -120.0
+offset_top = -18.0
+offset_bottom = -17.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_krbom")
@@ -231,10 +205,10 @@ expand_mode = 1
 
 [node name="STR" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 135.0
-offset_right = 30.0
-offset_bottom = 158.0
+offset_left = 9.0
+offset_top = 153.0
+offset_right = 33.0
+offset_bottom = 176.0
 theme_override_font_sizes/font_size = 11
 text = "STR"
 
@@ -251,10 +225,10 @@ horizontal_alignment = 2
 
 [node name="SPD" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 151.0
-offset_right = 30.0
-offset_bottom = 174.0
+offset_left = 9.0
+offset_top = 169.0
+offset_right = 33.0
+offset_bottom = 192.0
 theme_override_font_sizes/font_size = 11
 text = "SPD"
 
@@ -270,10 +244,10 @@ horizontal_alignment = 2
 
 [node name="INT" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 135.0
-offset_right = 96.0
-offset_bottom = 158.0
+offset_left = 65.0
+offset_top = 153.0
+offset_right = 99.0
+offset_bottom = 176.0
 theme_override_font_sizes/font_size = 11
 text = "INT"
 
@@ -289,10 +263,10 @@ horizontal_alignment = 2
 
 [node name="WIS" type="Label" parent="CanvasLayer/Character"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 151.0
-offset_right = 86.0
-offset_bottom = 174.0
+offset_left = 65.0
+offset_top = 169.0
+offset_right = 89.0
+offset_bottom = 192.0
 theme_override_font_sizes/font_size = 11
 text = "WIS"
 
@@ -318,7 +292,7 @@ offset_right = 319.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer/Equipment"]
@@ -353,7 +327,7 @@ offset_right = 279.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer/Inventory"]
@@ -378,7 +352,7 @@ offset_right = 193.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_wd8ci")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="InteractionButtonBar" type="TextureRect" parent="CanvasLayer"]
@@ -387,47 +361,49 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -134.0
-offset_right = 115.0
-offset_bottom = -99.0
+offset_left = -121.0
+offset_top = -142.0
+offset_right = 121.0
+offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_ughcv")
+texture = ExtResource("6_eutvf")
 expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InteractionButtonBar"]
 layout_mode = 0
-offset_right = 230.0
-offset_bottom = 35.0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 233.0
+offset_bottom = 44.0
 alignment = 1
 
 [node name="Attack" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="Inspect" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="Something" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="Stuff" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="Uhh" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
 
 [node name="I dunno" type="TextureButton" parent="CanvasLayer/InteractionButtonBar/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_0pp0w")
+texture_normal = ExtResource("5_28ulr")
 stretch_mode = 0
