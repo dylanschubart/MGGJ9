@@ -1,23 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://deslymf6pdlx7"]
+[gd_scene load_steps=9 format=3 uid="uid://deslymf6pdlx7"]
 
 [ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
 [ext_resource type="Texture2D" uid="uid://b385t4ocgpmua" path="res://Assets/UI/LogWindow.png" id="2_tmlwh"]
 [ext_resource type="Texture2D" uid="uid://bx4fjkwl7mrtq" path="res://Assets/UI/CharacterSheet.png" id="3_txeda"]
-[ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="4_5a1yg"]
+[ext_resource type="PackedScene" uid="uid://hmpenbnmx68r" path="res://Scenes/Characters/Playable/protagonist.tscn" id="4_qd4fk"]
 [ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="5_28ulr"]
+[ext_resource type="PackedScene" uid="uid://ctrg4nfeto1ic" path="res://Scenes/Characters/Playable/sidekick.tscn" id="5_vlt2k"]
 [ext_resource type="Texture2D" uid="uid://dnywpmk10p3kg" path="res://Assets/UI/SkillBar.png" id="6_eutvf"]
 
 [sub_resource type="Theme" id="Theme_payir"]
-
-[sub_resource type="Gradient" id="Gradient_fw2bd"]
-offsets = PackedFloat32Array(0.0133333, 0.06)
-colors = PackedColorArray(0.783523, 0.783523, 0.783523, 1, 0.886262, 0.886261, 0.886262, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_krbom"]
-gradient = SubResource("Gradient_fw2bd")
-width = 256
-height = 128
-fill_from = Vector2(1, 0)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -83,7 +74,7 @@ or is it?
 or is it?"
 scroll_following = true
 
-[node name="Character" type="TextureRect" parent="CanvasLayer"]
+[node name="FocusedCharacter" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -96,189 +87,12 @@ grow_vertical = 0
 texture = ExtResource("3_txeda")
 expand_mode = 1
 
-[node name="Character_image" type="TextureRect" parent="CanvasLayer/Character"]
+[node name="Protagonist" parent="CanvasLayer/FocusedCharacter" instance=ExtResource("4_qd4fk")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -164.0
-offset_right = 37.0
-offset_bottom = -53.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("4_5a1yg")
-stretch_mode = 4
 
-[node name="HP" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 118.0
-offset_right = 32.0
-offset_bottom = 141.0
-theme_override_font_sizes/font_size = 11
-text = "HP"
-
-[node name="HP_VALUE" type="Label" parent="CanvasLayer/Character/HP"]
-layout_mode = 0
-offset_left = 23.0
-offset_right = 47.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="SAN" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 134.0
-offset_right = 33.0
-offset_bottom = 157.0
-theme_override_font_sizes/font_size = 11
-text = "SAN"
-
-[node name="SAN_VALUE" type="Label" parent="CanvasLayer/Character/SAN"]
-layout_mode = 0
-offset_left = 22.0
-offset_right = 46.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="MANA" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 118.0
-offset_right = 99.0
-offset_bottom = 141.0
-theme_override_font_sizes/font_size = 11
-text = "MANA"
-
-[node name="MANA_VALUE" type="Label" parent="CanvasLayer/Character/MANA"]
-layout_mode = 0
-offset_left = 32.0
-offset_right = 56.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="COR" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 134.0
-offset_right = 89.0
-offset_bottom = 157.0
-theme_override_font_sizes/font_size = 11
-text = "COR"
-
-[node name="MANA_VALUE" type="Label" parent="CanvasLayer/Character/COR"]
-layout_mode = 0
-offset_left = 32.0
-offset_right = 56.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="Line" type="TextureRect" parent="CanvasLayer/Character"]
+[node name="Sidekick" parent="CanvasLayer/FocusedCharacter" instance=ExtResource("5_vlt2k")]
+visible = false
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -18.0
-offset_bottom = -17.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = SubResource("GradientTexture2D_krbom")
-expand_mode = 1
-
-[node name="STR" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 153.0
-offset_right = 33.0
-offset_bottom = 176.0
-theme_override_font_sizes/font_size = 11
-text = "STR"
-
-[node name="STR_VALUE" type="Label" parent="CanvasLayer/Character/STR"]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 1.0
-offset_right = 46.0
-offset_bottom = 24.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="SPD" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 169.0
-offset_right = 33.0
-offset_bottom = 192.0
-theme_override_font_sizes/font_size = 11
-text = "SPD"
-
-[node name="SPD_VALUE" type="Label" parent="CanvasLayer/Character/SPD"]
-layout_mode = 0
-offset_left = 22.0
-offset_right = 46.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="INT" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 153.0
-offset_right = 99.0
-offset_bottom = 176.0
-theme_override_font_sizes/font_size = 11
-text = "INT"
-
-[node name="INT_VALUE" type="Label" parent="CanvasLayer/Character/INT"]
-layout_mode = 0
-offset_left = 32.0
-offset_right = 56.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
-
-[node name="WIS" type="Label" parent="CanvasLayer/Character"]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 169.0
-offset_right = 89.0
-offset_bottom = 192.0
-theme_override_font_sizes/font_size = 11
-text = "WIS"
-
-[node name="WIS_VALUE" type="Label" parent="CanvasLayer/Character/WIS"]
-layout_mode = 0
-offset_left = 32.0
-offset_right = 56.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 11
-text = "10
-"
-horizontal_alignment = 2
 
 [node name="Equipment" type="TextureButton" parent="CanvasLayer"]
 anchors_preset = 8
