@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="1_ef15v"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayableCharacter.gd" id="1_rlxpr"]
-[ext_resource type="Resource" uid="uid://51hwvto6hhhk" path="res://DataSets/Characters/Playable/protagonist.tres" id="2_olwpo"]
+[ext_resource type="Resource" uid="uid://51hwvto6hhhk" path="res://Resources/Characters/Playable/protagonist.tres" id="2_olwpo"]
 
 [sub_resource type="Gradient" id="Gradient_fw2bd"]
 offsets = PackedFloat32Array(0.0133333, 0.06)

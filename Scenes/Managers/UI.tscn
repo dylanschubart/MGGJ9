@@ -1,0 +1,420 @@
+[gd_scene load_steps=12 format=3 uid="uid://deslymf6pdlx7"]
+
+[ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
+[ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="1_kpsve"]
+[ext_resource type="Texture2D" uid="uid://b385t4ocgpmua" path="res://Assets/UI/LogWindow.png" id="2_tmlwh"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_m8twh"]
+[ext_resource type="Texture2D" uid="uid://bx4fjkwl7mrtq" path="res://Assets/UI/CharacterSheet.png" id="3_txeda"]
+[ext_resource type="PackedScene" uid="uid://hmpenbnmx68r" path="res://Scenes/Characters/Playable/protagonist.tscn" id="4_qd4fk"]
+[ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="5_28ulr"]
+[ext_resource type="PackedScene" uid="uid://ctrg4nfeto1ic" path="res://Scenes/Characters/Playable/sidekick.tscn" id="5_vlt2k"]
+[ext_resource type="Texture2D" uid="uid://dnywpmk10p3kg" path="res://Assets/UI/SkillBar.png" id="6_eutvf"]
+[ext_resource type="Texture2D" uid="uid://clr38ctsr5c57" path="res://icon.svg" id="9_u445k"]
+
+[sub_resource type="Theme" id="Theme_payir"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 277.0
+offset_top = 146.0
+offset_right = 277.0
+offset_bottom = 146.0
+scale = Vector2(2.78125, 1.625)
+theme = SubResource("Theme_payir")
+script = ExtResource("1_kpsve")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueBox" type="TextureRect" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 171.0
+offset_top = 17.0
+offset_right = 429.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_chds7")
+
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/GameUI/DialogueBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 246.0
+offset_bottom = 162.0
+script = ExtResource("3_m8twh")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+
+[node name="LogBox" type="TextureRect" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 172.0
+offset_top = 221.0
+offset_right = 428.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_tmlwh")
+expand_mode = 1
+
+[node name="Log" type="RichTextLabel" parent="CanvasLayer/GameUI/LogBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 245.0
+offset_bottom = 95.0
+bbcode_enabled = true
+text = "This is so NOT cool
+or is it?
+or is it?
+or is it?
+or is it?
+or is it?"
+scroll_following = true
+
+[node name="FocusedCharacter" type="TextureRect" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 474.0
+offset_top = 150.0
+offset_right = 600.0
+offset_bottom = 320.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_txeda")
+expand_mode = 1
+
+[node name="Protagonist" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
+layout_mode = 1
+
+[node name="Sidekick" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("5_vlt2k")]
+visible = false
+layout_mode = 1
+
+[node name="Equipment" type="TextureButton" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 579.0
+offset_top = 130.0
+offset_right = 619.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="EquipmentList" type="ItemList" parent="CanvasLayer/GameUI/Equipment"]
+visible = false
+layout_mode = 0
+offset_left = -118.0
+offset_top = -88.0
+offset_right = -41.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 12
+allow_reselect = true
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
+
+[node name="EquipmentPopup" type="PopupMenu" parent="CanvasLayer/GameUI/Equipment/EquipmentList"]
+position = Vector2i(389, 60)
+size = Vector2i(78, 50)
+theme_override_font_sizes/font_size = 12
+allow_search = false
+item_count = 2
+item_0/text = "Unequip"
+item_0/id = 0
+item_1/text = "Examine"
+item_1/id = 1
+
+[node name="Inventory" type="TextureButton" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 539.0
+offset_top = 130.0
+offset_right = 579.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="InventoryList" type="ItemList" parent="CanvasLayer/GameUI/Inventory"]
+visible = false
+layout_mode = 0
+offset_left = -78.0
+offset_top = -88.0
+offset_right = -1.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 12
+allow_reselect = true
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
+
+[node name="InventoryPopUp" type="PopupMenu" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
+position = Vector2i(389, 60)
+size = Vector2i(87, 50)
+theme_override_font_sizes/font_size = 12
+allow_search = false
+item_count = 2
+item_0/text = "Use/Equip"
+item_0/id = 0
+item_1/text = "Examine"
+item_1/id = 1
+
+[node name="Menu" type="TextureButton" parent="CanvasLayer/GameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 453.0
+offset_top = 300.0
+offset_right = 493.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="InteractionButtonBar" type="TextureRect" parent="CanvasLayer/GameUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_top = 179.0
+offset_right = 421.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_eutvf")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 233.0
+offset_bottom = 44.0
+alignment = 1
+
+[node name="Attack" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Inspect" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Something" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Stuff" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Uhh" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="I dunno" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="InteractionLabel" type="Label" parent="CanvasLayer/GameUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 12
+
+[node name="TitleScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TitleScreen"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -13.0
+offset_right = 649.0
+offset_bottom = 373.0
+texture = ExtResource("1_chds7")
+
+[node name="PressAnyKeyLabel" type="Label" parent="CanvasLayer/TitleScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 246.0
+offset_top = 148.5
+offset_right = 354.0
+offset_bottom = 171.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Any Key"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TitleScreen"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 160.0
+offset_right = 200.0
+offset_bottom = 358.0
+
+[node name="Start" type="TextureButton" parent="CanvasLayer/TitleScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleScreen/VBoxContainer/Start"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 5.0
+offset_right = 76.0
+offset_bottom = 28.0
+text = "Start"
+
+[node name="Options" type="TextureButton" parent="CanvasLayer/TitleScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleScreen/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 5.0
+offset_right = 76.0
+offset_bottom = 28.0
+text = "Options"
+
+[node name="Exit" type="TextureButton" parent="CanvasLayer/TitleScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleScreen/VBoxContainer/Exit"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 5.0
+offset_right = 76.0
+offset_bottom = 28.0
+text = "Exit"
+
+[node name="Debug" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -19.0
+offset_top = 7.0
+offset_right = 21.0
+offset_bottom = 47.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Debug"]
+layout_mode = 2
+offset_left = 400.0
+offset_top = 22.0
+offset_right = 516.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 10
+text = "current Scene: "
+
+[node name="currentScene" type="Label" parent="CanvasLayer/Debug/Label"]
+layout_mode = 2
+offset_left = 73.0
+offset_right = 189.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Debug"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 358.0
+offset_top = 1.0
+offset_right = 600.0
+offset_bottom = 21.0
+grow_horizontal = 0
+
+[node name="Save" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Save"
+
+[node name="Load" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Load"
+
+[node name="Delete" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Delete Save"
+
+[node name="SecondScene2" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "First Location"
+
+[node name="SecondScene" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "2nd Location"
+
+[connection signal="pressed" from="CanvasLayer/GameUI/Equipment" to="." method="_on_equipment_pressed"]
+[connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
+[connection signal="pressed" from="CanvasLayer/GameUI/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="item_selected" from="CanvasLayer/GameUI/Inventory/InventoryList" to="." method="_on_inventory_list_item_selected"]
+[connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/SecondScene2" to="." method="_on_second_scene_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/SecondScene" to="." method="_on_button_pressed"]

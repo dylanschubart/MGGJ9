@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpcoerie4vhby"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_o0024"]
+
+[node name="Enemy" type="Node2D" groups=["enemy"]]
+position = Vector2(320, 179)
+script = ExtResource("1_o0024")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

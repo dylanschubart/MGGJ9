@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctrg4nfeto1ic"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/PlayableCharacter.gd" id="1_mba2g"]
-[ext_resource type="Resource" uid="uid://q7nf7w7y0k36" path="res://DataSets/Characters/Playable/sidekick.tres" id="2_h7gik"]
+[ext_resource type="Resource" uid="uid://q7nf7w7y0k36" path="res://Resources/Characters/Playable/sidekick.tres" id="2_h7gik"]
 [ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="3_uxa3b"]
 
 [sub_resource type="Gradient" id="Gradient_fw2bd"]

@@ -9,3 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func start_fight(enemy_sprite):
+	enemy_sprite.show()
+	Ui.toggle_element(Ui.interaction_button_bar)
