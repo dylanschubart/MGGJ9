@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://r1hw7i7elsd"
+path="res://.godot/imported/too late for halloween_.mp3-fc2a7d4fa6f20e811ac16988f0c9aaad.mp3str"
+
+[deps]
+
+source_file="res://Music and Sound/Music/too late for halloween_.mp3"
+dest_files=["res://.godot/imported/too late for halloween_.mp3-fc2a7d4fa6f20e811ac16988f0c9aaad.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

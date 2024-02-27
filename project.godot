@@ -26,6 +26,7 @@ LogManager="*res://Scripts/Managers/log_manager.gd"
 StatsManager="*res://Scripts/Managers/stats_manager.gd"
 Ui="*res://Scenes/Managers/UI.tscn"
 SceneManager="*res://Scenes/Managers/scene_manager.tscn"
+SoundManager="*res://Scenes/Managers/sound_manager.tscn"
 
 [display]
 

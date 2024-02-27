@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://rpi6nrg70k76"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/SoundManager.gd" id="1_1qvtb"]
+[ext_resource type="AudioStream" uid="uid://134kql6fcdl0" path="res://Music and Sound/Music/crxw - v0idness.mp3" id="2_d2len"]
+[ext_resource type="AudioStream" uid="uid://chfecnxp12exa" path="res://Music and Sound/Music/stylish endeavour.mp3" id="3_62mmq"]
+[ext_resource type="AudioStream" uid="uid://r1hw7i7elsd" path="res://Music and Sound/Music/too late for halloween_.mp3" id="4_2gqj6"]
+[ext_resource type="AudioStream" uid="uid://grijwiki20aw" path="res://Music and Sound/Music/unpledged alliance.mp3" id="5_q1jpl"]
+[ext_resource type="AudioStream" uid="uid://mbu1t0e20ii0" path="res://Music and Sound/Music/whats happening to my earZ.mp3" id="6_s2yst"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_1qvtb")
+
+[node name="Voice" type="Node" parent="."]
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="crxw-v0idness" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_d2len")
+
+[node name="crxw-stylish-endeavour" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_62mmq")
+
+[node name="crxw-too-late-for-halloween" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_2gqj6")
+
+[node name="crxw-unpledged-alliance" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("5_q1jpl")
+
+[node name="crxw-whats-happening-to-my-earZ" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("6_s2yst")
+
+[node name="Ambience" type="Node" parent="."]

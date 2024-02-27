@@ -6,6 +6,7 @@ var dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue, "star
 @onready var game_ui = $CanvasLayer/GameUI
 @onready var dialogue_box = $CanvasLayer/GameUI/DialogueBox
 @onready var logBox = $CanvasLayer/GameUI/LogBox
+@onready var log_rich_text = $CanvasLayer/GameUI/LogBox/Log
 @onready var focused_character = $CanvasLayer/GameUI/FocusedCharacter
 @onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
 @onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
@@ -15,9 +16,11 @@ var dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue, "star
 @onready var title_screen = $CanvasLayer/TitleScreen
 @onready var interaction_label = $CanvasLayer/GameUI/InteractionLabel
 @onready var dialogue_box_label = $CanvasLayer/GameUI/DialogueBox/DialogueLabel
+@onready var character_label = $CanvasLayer/GameUI/DialogueBox/CharacterLabel
+@onready var next_char_timer = $CanvasLayer/GameUI/LogBox/nextChar
 
 func _ready():
-	pass
+	SoundManager.playMusic("crxw-v0idness")
 
 func _process(_delta):
 	interaction_label.position = get_viewport().get_mouse_position() + Vector2(-5,10)
@@ -30,38 +33,51 @@ func toggle_element(element:Node):
 		
 func set_interaction_label(text:String):
 	interaction_label.text = text
-		
-func _on_start_pressed():
-	toggle_element(title_screen)
-	toggle_element(game_ui)
-	
-	if SaveManager.load_game().file_exists:
-		print_debug("Loaded %s" % SceneManager.current_scene)
-		SceneManager.change_scene(SceneManager.current_scene)
-	else:
-		dialogue_box_label.dialogue_line = dialogue_line
-		dialogue_box_label.type_out()
-		print_debug("No Loaded Scene")
-		SceneManager.change_scene(SceneManager.scenes.abandoned_cellar)
 
+func start_dialogue(dialogue_resource):
+	toggle_element(dialogue_box)
+	dialogue_box_label.dialogue_line = dialogue_line
+	character_label.text = tr(dialogue_line.character, "dialogue")
+	dialogue_box_label.type_out()
+	
 func _unhandled_input(event: InputEvent) -> void:
-	#get_viewport().set_input_as_handled()
+	
 	var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
-	if dialogue_box_label.is_typing && mouse_was_clicked:
+	if dialogue_box.is_visible() && dialogue_box_label.is_typing && mouse_was_clicked:
 		dialogue_box_label.skip_typing()
+		get_viewport().set_input_as_handled()
 		return
-	if dialogue_line && mouse_was_clicked:
+	if dialogue_box.is_visible() && dialogue_line && mouse_was_clicked:
 		next(dialogue_line.next_id)
+		get_viewport().set_input_as_handled()
 	
 func next(next_id: String):
 	print_debug("next line %s" %next_id)
 	dialogue_line = await dialogue.get_next_dialogue_line(next_id)
 	if dialogue_line:
+		character_label.text = tr(dialogue_line.character, "dialogue")
 		dialogue_box_label.dialogue_line = dialogue_line
 		dialogue_box_label.type_out()
 	else:
 		toggle_element(dialogue_box)
 	
+func _on_start_pressed():
+	toggle_element(title_screen)
+	toggle_element(game_ui)
+	SoundManager.lowerLastMusicVolume()
+	
+	if SaveManager.load_game().file_exists:
+		dialogue_line = null
+		print_debug("Loaded %s" % SceneManager.current_scene)
+		SceneManager.change_scene(SceneManager.current_scene)
+	else:
+		dialogue_box_label.dialogue_line = dialogue_line
+		character_label.text = tr(dialogue_line.character, "dialogue")
+		dialogue_box_label.type_out()
+		print_debug("No Loaded Scene")
+		SceneManager.change_scene(SceneManager.scenes.abandoned_cellar)
+
+
 func _on_options_pressed():
 	pass # Replace with function body.
 
@@ -117,3 +133,7 @@ func _on_inventory_pressed():
 		inventory_list.set_visible(false)
 	else:
 		inventory_list.set_visible(true)
+
+
+func _on_log_pressed():
+	LogManager.write_to_log("i am testing the log! you took 4 Damage")

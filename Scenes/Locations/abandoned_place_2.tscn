@@ -22,14 +22,14 @@ texture = ExtResource("1_xoygm")
 visible = false
 enemy_resource = ExtResource("4_timcu")
 
-[node name="EnemyInteractable" type="Area2D" parent="."]
+[node name="EnemyInteractable" type="Area2D" parent="." groups=["interactables"]]
 position = Vector2(427, 117)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInteractable"]
 position = Vector2(-3, -5)
 shape = SubResource("RectangleShape2D_s8roo")
 
-[node name="abandonedcellar" type="Area2D" parent="."]
+[node name="abandonedcellar" type="Area2D" parent="." groups=["interactables"]]
 position = Vector2(19, 205)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="abandonedcellar"]

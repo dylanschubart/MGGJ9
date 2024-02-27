@@ -16,14 +16,14 @@ script = ExtResource("1_shb43")
 position = Vector2(320, 180)
 texture = ExtResource("1_6dmjr")
 
-[node name="AbandonedCellar2" type="Area2D" parent="."]
+[node name="AbandonedCellar2" type="Area2D" parent="." groups=["interactables"]]
 position = Vector2(542, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbandonedCellar2"]
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_t1pr0")
 
-[node name="Outside" type="Area2D" parent="."]
+[node name="Outside" type="Area2D" parent="." groups=["interactables"]]
 position = Vector2(176, 71)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Outside"]
