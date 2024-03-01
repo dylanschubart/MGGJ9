@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://deslymf6pdlx7"]
+[gd_scene load_steps=13 format=3 uid="uid://deslymf6pdlx7"]
 
 [ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="1_kpsve"]
+[ext_resource type="Resource" uid="uid://6w6f8j0dh20r" path="res://Resources/Save/save_resource.tres" id="2_23laf"]
 [ext_resource type="Texture2D" uid="uid://b385t4ocgpmua" path="res://Assets/UI/LogWindow.png" id="2_tmlwh"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_m8twh"]
 [ext_resource type="Texture2D" uid="uid://bx4fjkwl7mrtq" path="res://Assets/UI/CharacterSheet.png" id="3_txeda"]
@@ -23,6 +24,7 @@ offset_bottom = 146.0
 scale = Vector2(2.78125, 1.625)
 theme = SubResource("Theme_payir")
 script = ExtResource("1_kpsve")
+save = ExtResource("2_23laf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

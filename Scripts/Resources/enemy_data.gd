@@ -1,6 +1,5 @@
+class_name EnemyData
 extends Resource
-
-class_name enemy_data
 
 @export var texture: Texture
 @export var health: int

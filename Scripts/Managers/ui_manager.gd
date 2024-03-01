@@ -1,7 +1,9 @@
 extends Node
 
+var save: SaveData = SaveData.new()
+
 var dialogue = load("res://Dialogue/Intro.dialogue")
-var dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue, "start")
+var dialogue_line
 
 @onready var game_ui = $CanvasLayer/GameUI
 @onready var dialogue_box = $CanvasLayer/GameUI/DialogueBox
@@ -36,6 +38,7 @@ func set_interaction_label(text:String):
 
 func start_dialogue(dialogue_resource):
 	toggle_element(dialogue_box)
+	dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue_resource, "start")
 	dialogue_box_label.dialogue_line = dialogue_line
 	character_label.text = tr(dialogue_line.character, "dialogue")
 	dialogue_box_label.type_out()
@@ -52,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	
 func next(next_id: String):
-	print_debug("next line %s" %next_id)
+	#print_debug("next line %s" %next_id)
 	dialogue_line = await dialogue.get_next_dialogue_line(next_id)
 	if dialogue_line:
 		character_label.text = tr(dialogue_line.character, "dialogue")
@@ -65,19 +68,24 @@ func _on_start_pressed():
 	toggle_element(title_screen)
 	toggle_element(game_ui)
 	SoundManager.lowerLastMusicVolume()
+	create_or_load_game()
 	
-	if SaveManager.load_game().file_exists:
-		dialogue_line = null
-		print_debug("Loaded %s" % SceneManager.current_scene)
-		SceneManager.change_scene(SceneManager.current_scene)
+func create_or_load_game():
+	if save.save_exists():
+		save = save.load_game()
+		for room in save.rooms.values():
+			if room.current_scene:
+				SceneManager.change_scene(SceneManager.room_scenes[room.room_name])
 	else:
-		dialogue_box_label.dialogue_line = dialogue_line
-		character_label.text = tr(dialogue_line.character, "dialogue")
-		dialogue_box_label.type_out()
-		print_debug("No Loaded Scene")
-		SceneManager.change_scene(SceneManager.scenes.abandoned_cellar)
-
-
+		save.protagonist = CharacterData.new()
+		save.side_character = CharacterData.new()
+		save.inventory = InventoryData.new()
+		save.equipment = EquipmentData.new()
+		SceneManager.change_scene(SceneManager.room_scenes.abandoned_cellar)
+		start_dialogue(dialogue)
+		save.save_game()
+		print_debug("new Save")
+		
 func _on_options_pressed():
 	pass # Replace with function body.
 
@@ -86,13 +94,17 @@ func _on_exit_pressed():
 
 
 func _on_save_pressed():
-	SaveManager.save_game()
+	save.save_game()
 
 
 func _on_load_pressed():
-	if SaveManager.load_game().file_exists:
-		print_debug("Loaded %s" % SceneManager.current_scene)
-		SceneManager.change_scene(SceneManager.current_scene)
+	if save.save_exists():
+		save.load_game()
+		#for room in save.ROOM_DATA:
+			#if room.current_scene:
+				#print_debug("room current_scene!!!!!!!!!!%s" % room)
+				#SceneManager.current_scene = room
+				#SceneManager.change_scene(SceneManager.current_scene)
 		
 	if title_screen.is_visible():
 		title_screen.set_visible(false)
@@ -101,18 +113,16 @@ func _on_load_pressed():
 		game_ui.set_visible(true)
 
 func _on_button_pressed():
-	SceneManager.change_scene(SceneManager.scenes.abandoned_cellar2)
+	SceneManager.change_scene(SceneManager.scenes.abandoned_cellar_2)
 
 
 func _on_delete_pressed():
-	SaveManager.delete_save()
+	if save.save_exists():
+		save.delete_save()
 
 func set_currentscene_label(name:String):
 	$CanvasLayer/Debug/Label/currentScene.text = name
 
-
-func _on_second_scene_2_pressed():
-	SceneManager.change_scene(SceneManager.scenes.abandoned_cellar)
 
 func _on_inventory_list_item_selected(index):
 	inventory_popup.popup()
@@ -137,3 +147,10 @@ func _on_inventory_pressed():
 
 func _on_log_pressed():
 	LogManager.write_to_log("i am testing the log! you took 4 Damage")
+
+
+func _on_first_location_pressed():
+	SceneManager.change_scene(SceneManager.scenes.abandoned_cellar)
+
+func _on_nd_location_pressed():
+	SceneManager.change_scene(SceneManager.scenes.abandoned_cellar_2)

@@ -15,3 +15,4 @@ strength = 2
 intelligence = 6
 speed = 3
 wisdom = 5
+inventory = Array[Resource]([])

@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var room_data: RoomData
 @onready var enemy: Node = $Enemy
 
 func _on_enemy_input_event(viewport, event, shape_idx):

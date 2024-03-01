@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://kblcdprlmdou"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/room_data.gd" id="1_7bh7i"]
+
+[resource]
+script = ExtResource("1_7bh7i")
+room_name = "abandoned_cellar_2"
+interactables = Array[Resource("res://Scripts/Resources/interactable_data.gd")]([])
+enemies = Array[Resource("res://Scripts/Resources/enemy_data.gd")]([])
+current_scene = false
+scene_path = "res://Scenes/Locations/abandoned_cellar_2.tscn"

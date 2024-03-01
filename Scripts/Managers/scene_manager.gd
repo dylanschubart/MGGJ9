@@ -1,25 +1,32 @@
 extends Node
+#class_name SceneManager
 
-@export var current_scene: PackedScene
-@export var scenes:Dictionary = {
-	"abandoned_cellar" : preload("res://Scenes/Locations/abandoned_place.tscn"),
-	"abandoned_cellar2" : preload("res://Scenes/Locations/abandoned_place_2.tscn")
+var current_scene: Node
+var room_scenes: Dictionary = {
+	"abandoned_cellar": "res://Scenes/Locations/abandoned_cellar.tscn",
+	"abandoned_cellar_2": "res://Scenes/Locations/abandoned_cellar_2.tscn",
 }
-var current_scene_list = []
 
-func ready():
-	pass
-
-func change_scene(scene: PackedScene):
-	if scene:
-		if current_scene_list:
-			remove_child(current_scene_list[0])
-			current_scene_list.remove_at(0)
-		var next_level = scene.instantiate()
-		add_child(next_level)
-		current_scene_list.append(next_level)
-		current_scene = scene
+func change_scene(room_scene: String):
+	if room_scene:
+		if current_scene:
+			var key = current_scene.ROOM_NAMES.find_key(current_scene.room_name)
+			var room_data = Ui.save.rooms[key]
+			room_data.current_scene = false
+			remove_child(current_scene)
 		
+		print_debug(room_scene)
+		var load_level = load(room_scene)
+		var instantiated_level = load_level.instantiate()
+		add_child(instantiated_level)
+		current_scene = instantiated_level
+		
+		#Ui.save.rooms.find_key()
+		var key = room_scenes.find_key(room_scene)
+		
+		var room_data = Ui.save.rooms[key]
+		room_data.current_scene = true
+		Ui.save.save_game()
 		# DEBUG
-		Ui.set_currentscene_label(scenes.find_key(scene))
+		Ui.set_currentscene_label(room_data.room_name)
 	

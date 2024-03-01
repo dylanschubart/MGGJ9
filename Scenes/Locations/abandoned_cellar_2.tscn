@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://blmdrjnhk6xas"]
+
+[ext_resource type="Script" path="res://Scripts/Locations/room.gd" id="1_8v82j"]
+[ext_resource type="Texture2D" uid="uid://buq1jojx85k4l" path="res://Assets/Locations/AbandonedCellar2.png" id="2_1ja3w"]
+[ext_resource type="PackedScene" uid="uid://dpcoerie4vhby" path="res://Scenes/Enemies/enemy.tscn" id="3_a0ro1"]
+[ext_resource type="Resource" uid="uid://bmrkg1a3p2n0u" path="res://Resources/Enemies/TutorialEnemy.tres" id="4_h23e5"]
+[ext_resource type="PackedScene" uid="uid://oxacnte0u3cu" path="res://Resources/Scenes/Resources/interactable.tscn" id="5_qflyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8ik"]
+size = Vector2(24, 162)
+
+[node name="abandoned_place2" type="Node2D"]
+script = ExtResource("1_8v82j")
+room_name = 1
+
+[node name="AbandonedCellar2" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_1ja3w")
+
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="abandoned_cellar" parent="Interactables" instance=ExtResource("5_qflyu")]
+position = Vector2(45, 202)
+mouse_text = "Next Room"
+selected_room = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/abandoned_cellar"]
+position = Vector2(-30, 5)
+shape = SubResource("RectangleShape2D_7r8ik")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_a0ro1")]
+visible = false
+enemy_data = ExtResource("4_h23e5")

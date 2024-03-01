@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SaveManager="*res://Scripts/Managers/save_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CombatManager="*res://Scripts/Managers/combat_manager.gd"
 EquipmentManager="*res://Scripts/Managers/equipment_manager.gd"
