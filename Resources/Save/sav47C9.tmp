@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="SaveGame" load_steps=2 format=3 uid="uid://cm51sge0cx2iu"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/save_resource.gd" id="1_vpiy6"]
-
-[resource]
-script = ExtResource("1_vpiy6")
-CHARACTER_DATA = Array[Resource("res://Scripts/Resources/character_data.gd")]([])

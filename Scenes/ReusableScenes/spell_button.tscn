@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0edf3gj3evgu"]
+
+[ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="1_ckxqd"]
+
+[node name="SpellButton" type="TextureButton"]
+texture_normal = ExtResource("1_ckxqd")
+stretch_mode = 0

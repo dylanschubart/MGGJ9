@@ -8,10 +8,10 @@ enum ROOM_NAMES {abandoned_cellar, abandoned_cellar_2}
 @export var enemies: Array[EnemyData]
 @export var current_scene: bool
 @export var scene_path: String
-#@onready var background: Sprite2D = $Background
-
 var room_key: String
+
 func _ready():
+
 	room_key = ROOM_NAMES.find_key(room_name)
 	load_room()
 
@@ -21,17 +21,23 @@ func load_room():
 		print_debug("saved room")
 		var persistent_nodes = get_tree().get_nodes_in_group("persistent")
 		var interactable_node = get_node("Interactables")
+		var enemy_node = get_node("Enemies")
 		for node in persistent_nodes:
-			interactable_node.remove_child(node) 
+			interactable_node.remove_child(node)
 			node.queue_free()
-		
-		print_debug(room_data.interactables)
+			
 		for interactable in room_data.interactables:
-			#print_debug(interactable.scene_path)
 			var interactable_scene = load(interactable.scene_path)
 			var new_interactable = interactable_scene.instantiate()
 			new_interactable.interactable_data = interactable
 			interactable_node.add_child(new_interactable)
+		
+		for enemy in room_data.enemies:
+			var enemy_scene = load(enemy.scene_path)
+			var new_enemy = enemy_scene.instantiate()
+			new_enemy.enemy_data = enemy
+			enemy_node.add_child(new_enemy)
+			
 	else:
 		print_debug("create new room")
 		Ui.save.rooms[ROOM_NAMES.find_key(room_name)] = RoomData.new()

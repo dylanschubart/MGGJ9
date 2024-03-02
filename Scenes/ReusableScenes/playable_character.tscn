@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://hmpenbnmx68r"]
+[gd_scene load_steps=5 format=3 uid="uid://hmpenbnmx68r"]
 
 [ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="1_ef15v"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayableCharacter.gd" id="1_rlxpr"]
-[ext_resource type="Resource" uid="uid://51hwvto6hhhk" path="res://Resources/Characters/Playable/protagonist.tres" id="2_olwpo"]
 
 [sub_resource type="Gradient" id="Gradient_fw2bd"]
 offsets = PackedFloat32Array(0.0133333, 0.06)
@@ -14,7 +13,7 @@ width = 256
 height = 128
 fill_from = Vector2(1, 0)
 
-[node name="Protagonist" type="Control"]
+[node name="PlayableCharacter" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rlxpr")
-startingStats = ExtResource("2_olwpo")
 
 [node name="Character_image" type="TextureRect" parent="."]
 layout_mode = 1
@@ -41,6 +39,7 @@ texture = ExtResource("1_ef15v")
 stretch_mode = 4
 
 [node name="HP" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 114.0
 offset_right = 13.0
@@ -59,6 +58,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="MANA" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 114.0
 offset_right = 79.0
@@ -77,6 +77,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="SAN" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 125.0
 offset_right = 13.0
@@ -95,6 +96,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="COR" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 125.0
 offset_right = 69.0
@@ -129,6 +131,7 @@ texture = SubResource("GradientTexture2D_6knvb")
 expand_mode = 1
 
 [node name="STR" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 139.0
 offset_right = 13.0
@@ -148,6 +151,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="INT" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 140.0
 offset_right = 79.0
@@ -166,6 +170,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="SPD" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 150.0
 offset_right = 13.0
@@ -184,6 +189,7 @@ text = "10
 horizontal_alignment = 2
 
 [node name="WIS" type="Label" parent="Character_image"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 150.0
 offset_right = 69.0

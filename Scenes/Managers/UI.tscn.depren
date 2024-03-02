@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bx4fjkwl7mrtq" path="res://Assets/UI/CharacterSheet.png" id="3_txeda"]
 [ext_resource type="PackedScene" uid="uid://hmpenbnmx68r" path="res://Scenes/ReusableScenes/playable_character.tscn" id="4_qd4fk"]
 [ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="5_28ulr"]
+[ext_resource type="PackedScene" uid="uid://ctrg4nfeto1ic" path="res://Scenes/Characters/Playable/sidekick.tscn" id="5_vlt2k"]
 [ext_resource type="Texture2D" uid="uid://dnywpmk10p3kg" path="res://Assets/UI/SkillBar.png" id="6_eutvf"]
-[ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="7_dgugd"]
 [ext_resource type="Texture2D" uid="uid://clr38ctsr5c57" path="res://icon.svg" id="9_u445k"]
 
 [sub_resource type="Theme" id="Theme_payir"]
@@ -34,6 +34,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DialogueBox" type="TextureRect" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -110,24 +111,12 @@ grow_vertical = 0
 texture = ExtResource("3_txeda")
 expand_mode = 1
 
-[node name="PlayableCharacter" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
+[node name="Protagonist" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
 layout_mode = 1
-character_name = "protagonist"
-active_character = true
-texture = ExtResource("7_dgugd")
-max_hit_points = 20
-cur_hit_points = 20
-sanity = 5
-corruption = 7
-strength = 20
-intelligence = 50
-speed = 5
-wisdom = 3
 
-[node name="PlayableCharacter2" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
+[node name="Sidekick" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("5_vlt2k")]
 visible = false
 layout_mode = 1
-character_name = "sidekick"
 
 [node name="Equipment" type="TextureButton" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -244,8 +233,7 @@ grow_vertical = 0
 texture = ExtResource("6_eutvf")
 expand_mode = 1
 
-[node name="Actions" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
@@ -253,14 +241,35 @@ offset_right = 233.0
 offset_bottom = 44.0
 alignment = 1
 
-[node name="Spells" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
-visible = false
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 233.0
-offset_bottom = 44.0
-alignment = 1
+[node name="Attack" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Inspect" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Something" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Stuff" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="Uhh" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
+
+[node name="I dunno" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+stretch_mode = 0
 
 [node name="InteractionLabel" type="Label" parent="CanvasLayer/GameUI"]
 layout_mode = 0
@@ -394,11 +403,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Delete Save"
 
-[node name="Change Character" type="Button" parent="CanvasLayer/Debug/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "Change Character"
-
 [connection signal="pressed" from="CanvasLayer/GameUI/Equipment" to="." method="_on_equipment_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Inventory" to="." method="_on_inventory_pressed"]
@@ -409,4 +413,3 @@ text = "Change Character"
 [connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="CanvasLayer/Debug/VBoxContainer/Change Character" to="." method="_on_change_character_pressed"]

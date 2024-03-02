@@ -43,14 +43,14 @@ func playMusic(music):
 	if lastMusic != null:
 		if lastMusic.playing:
 			var lastMusicFadeOut = create_tween()
-			lastMusicFadeOut.tween_property(lastMusic, "volume_db", -80, 5)
+			lastMusicFadeOut.tween_property(lastMusic, "volume_db", -80, 0.5)
 			await lastMusicFadeOut.finished
 			lastMusic.stop()
 			
 	lastMusic = audioPlayer
 	audioPlayer.play()
 	var audioPlayerFadeIn = create_tween()
-	audioPlayerFadeIn.tween_property(audioPlayer, "volume_db", 0, 1)
+	audioPlayerFadeIn.tween_property(audioPlayer, "volume_db", 0, 0.5)
 	audioPlayer.play()
 
 func lowerLastMusicVolume():

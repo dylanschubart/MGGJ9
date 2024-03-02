@@ -6,8 +6,7 @@ const FILE_PATH = "user://savegame.tres"
 
 #Data to Save
 @export var rooms: Dictionary
-@export var protagonist: CharacterData
-@export var side_character: CharacterData
+@export var characters: Dictionary
 @export var inventory: InventoryData
 @export var equipment: EquipmentData
 
