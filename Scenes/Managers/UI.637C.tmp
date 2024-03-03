@@ -236,8 +236,8 @@ item_1/id = 1
 [node name="Items" type="Node" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
 
 [node name="Item" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
-item_name = "Fake Wand"
-item_examine_text = "It's a fake magic wand"
+item_name = "Wand"
+item_examine_text = "It's a magic wand"
 item_equipable = true
 item_equiped = true
 

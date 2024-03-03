@@ -12,10 +12,16 @@ var dialogue_line
 @onready var focused_character = $CanvasLayer/GameUI/FocusedCharacter
 @onready var protagonist = $CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter
 @onready var side_character = $CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter2
-@onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
-@onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
+
+#Items
 @onready var inventory_list = $CanvasLayer/GameUI/Inventory/InventoryList
 @onready var inventory_popup = $CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp
+var selected_item_popup_index;
+#Equipment
+@onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
+@onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
+var selected_equipment_popup_index;
+
 @onready var interaction_button_bar = $CanvasLayer/GameUI/InteractionButtonBar
 @onready var title_screen = $CanvasLayer/TitleScreen
 @onready var interaction_label = $CanvasLayer/GameUI/InteractionLabel
@@ -30,7 +36,8 @@ func _ready():
 	SoundManager.playMusic("crxw-v0idness")
 
 func _process(_delta):
-	interaction_label.position = get_viewport().get_mouse_position() + Vector2(-5,10)
+	if get_viewport().get_mouse_position() && interaction_label:
+		interaction_label.position = get_viewport().get_mouse_position() + Vector2(-5,10)
 
 func toggle_element(element:Node):
 	if element.is_visible():
@@ -49,7 +56,9 @@ func create_or_load_game():
 				SceneManager.change_scene(SceneManager.room_scenes[room.room_name])
 	else:
 		save.inventory = InventoryData.new()
+		save.inventory.items = InventoryManager.set_inventory()
 		save.equipment = EquipmentData.new()
+		save.equipment.equipedItems = EquipmentManager.set_equipment()
 		SceneManager.change_scene(SceneManager.room_scenes.abandoned_cellar)
 		start_dialogue(dialogue)
 		save.save_game()
@@ -94,25 +103,24 @@ func _on_options_pressed():
 func _on_exit_pressed():
 	get_tree().quit()
 
-func _on_inventory_list_item_selected(index):
+func _on_inventory_list_item_selected(_index):
 	inventory_popup.popup()
+	selected_item_popup_index = _index
 
-func _on_equipment_list_item_selected(index):
+func _on_equipment_list_item_selected(_index):
 	equipment_popup.popup()
 
 
 func _on_equipment_pressed():
-	if equipment_list.is_visible():
-		equipment_list.set_visible(false)
-	else:
-		equipment_list.set_visible(true)
+	toggle_element(equipment_list)
+	if inventory_list.is_visible():
+		toggle_element(inventory_list)
 
 
 func _on_inventory_pressed():
-	if inventory_list.is_visible():
-		inventory_list.set_visible(false)
-	else:
-		inventory_list.set_visible(true)
+	toggle_element(inventory_list)
+	if equipment_list.is_visible():
+		toggle_element(equipment_list)
 
 # --------> INTERACTIONBUTTONBAR ACTIONS
 func _on_examine_enemy_mouse_entered():
@@ -167,7 +175,7 @@ func _on_flee_mouse_exited():
 func _on_flee_pressed():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	set_interaction_label("")
-	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Spells/Back
+	var _btn = $CanvasLayer/GameUI/InteractionButtonBar/Spells/Back
 
 func _on_back_pressed():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -186,12 +194,23 @@ func _on_back_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	set_interaction_label("")
 
+#-----------------------------> Character UI
+func refresh_stats_UI(player: Node): 
+	player.hp_label.text = str(player.character_data.cur_hit_points) + "/" +  str(player.character_data.max_hit_points)
+	player.mana_label.text = str(player.character_data.cur_mana) + "/" +  str(player.character_data.max_mana)
+	player.sanity_label.text = str(player.character_data.sanity)
+	player.corruption_label.text = str(player.character_data.corruption)
+	player.strength_label.text = str(player.character_data.strength)
+	player.intelligence_label.text = str(player.character_data.intelligence)
+	player.speed_label.text = str(player.character_data.speed)
+	player.wisdom_label.text = str(player.character_data.wisdom)
+
 # --------> DEBUG
 func _on_save_pressed():
 	save.save_game()
 
 func _on_load_pressed():
-	create_or_load_game
+	#create_or_load_game
 		
 	if title_screen.is_visible():
 		title_screen.set_visible(false)
@@ -203,7 +222,7 @@ func _on_delete_pressed():
 	if save.save_exists():
 		save.delete_save()
 
-func set_currentscene_label(name:String):
+func set_currentscene_label(_name:String):
 	$CanvasLayer/Debug/Label/currentScene.text = name
 
 func _on_change_character_pressed():
@@ -215,7 +234,6 @@ func _on_change_character_pressed():
 		side_character.hide()
 		protagonist.show()
 
-
-
-
-
+func _on_inventory_pop_up_index_pressed(index):
+	if inventory_popup.get_item_text(index) == "Examine":
+		LogManager.write_to_log(inventory_list.get_item_text(selected_item_popup_index))

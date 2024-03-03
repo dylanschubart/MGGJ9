@@ -23,6 +23,12 @@ func start_fight():
 			current_character = player
 			create_spell_bar(player.character_data)
 			
+func end_fight():
+	SoundManager.playMusic("crxw-v0idness")
+	current_enemy.hide();
+	Ui.save.save_game()
+	Ui.toggle_element(Ui.interaction_button_bar)
+	
 
 func create_spell_bar(character_data: CharacterData):
 	for spell in character_data.spells:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deslymf6pdlx7"]
+[gd_scene load_steps=13 format=3 uid="uid://deslymf6pdlx7"]
 
 [ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="1_kpsve"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="7_dgugd"]
 [ext_resource type="PackedScene" uid="uid://cp46pk3xoqsjw" path="res://Scenes/ReusableScenes/spell.tscn" id="8_32civ"]
 [ext_resource type="Texture2D" uid="uid://clr38ctsr5c57" path="res://icon.svg" id="9_u445k"]
-[ext_resource type="PackedScene" uid="uid://cp767gfsrx1yl" path="res://Scenes/ReusableScenes/item.tscn" id="11_0fm8u"]
 
 [sub_resource type="Theme" id="Theme_payir"]
 
@@ -174,6 +173,9 @@ offset_right = -41.0
 offset_bottom = 40.0
 theme_override_font_sizes/font_size = 12
 allow_reselect = true
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
 
 [node name="EquipmentPopup" type="PopupMenu" parent="CanvasLayer/GameUI/Equipment/EquipmentList"]
 position = Vector2i(389, 60)
@@ -185,13 +187,6 @@ item_0/text = "Unequip"
 item_0/id = 0
 item_1/text = "Examine"
 item_1/id = 1
-
-[node name="Items" type="Node" parent="CanvasLayer/GameUI/Equipment/EquipmentList"]
-
-[node name="Item" parent="CanvasLayer/GameUI/Equipment/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
-item_name = "Wand"
-item_examine_text = "It's a magic wand"
-item_equipable = true
 
 [node name="Inventory" type="TextureButton" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -219,8 +214,9 @@ offset_right = -1.0
 offset_bottom = 40.0
 theme_override_font_sizes/font_size = 12
 allow_reselect = true
-item_count = 1
-item_0/text = ""
+item_count = 2
+item_0/text = "Wand"
+item_1/text = "Book"
 
 [node name="InventoryPopUp" type="PopupMenu" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
 position = Vector2i(389, 60)
@@ -232,14 +228,6 @@ item_0/text = "Use/Equip"
 item_0/id = 0
 item_1/text = "Examine"
 item_1/id = 1
-
-[node name="Items" type="Node" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
-
-[node name="Item" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
-item_name = "Fake Wand"
-item_examine_text = "It's a fake magic wand"
-item_equipable = true
-item_equiped = true
 
 [node name="Menu" type="TextureButton" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -456,7 +444,6 @@ text = "Change Character"
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Inventory/InventoryList" to="." method="_on_inventory_list_item_selected"]
-[connection signal="index_pressed" from="CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp" to="." method="_on_inventory_pop_up_index_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_pressed"]

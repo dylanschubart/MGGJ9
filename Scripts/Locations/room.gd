@@ -33,10 +33,11 @@ func load_room():
 			interactable_node.add_child(new_interactable)
 		
 		for enemy in room_data.enemies:
-			var enemy_scene = load(enemy.scene_path)
-			var new_enemy = enemy_scene.instantiate()
-			new_enemy.enemy_data = enemy
-			enemy_node.add_child(new_enemy)
+			if not enemy.dead:
+				var enemy_scene = load(enemy.scene_path)
+				var new_enemy = enemy_scene.instantiate()
+				new_enemy.enemy_data = enemy
+				enemy_node.add_child(new_enemy)
 			
 	else:
 		print_debug("create new room")

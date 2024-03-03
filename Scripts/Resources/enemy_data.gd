@@ -18,17 +18,20 @@ func take_damage(spell_data: SpellData, player: Node):
 		health = new_health
 		var text = enemy_name + "'s new health " + str(health)
 		LogManager.write_to_log(text)
-		attack(player)
+		await attack(player)
+		Ui.refresh_stats_UI(player)
 		# Update health in UI
 
 func attack(player: Node):
 	player.character_data.cur_hit_points = player.character_data.cur_hit_points - damage
-	var text = enemy_name + " " + log_attack_text + " " + str(damage) + " " + "damage"
+	var text = enemy_name + " " + log_attack_text + " " + str(damage) + " damage"
 	LogManager.write_to_log(text)
 	# send new Character Health to Player
 	
 func death():
 	dead = true
 	LogManager.write_to_log("enemy is dead")
+	CombatManager.end_fight()
 	# do something with loot
+	
 	
