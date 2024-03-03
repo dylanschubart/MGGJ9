@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0edf3gj3evgu"]
+[gd_scene load_steps=3 format=3 uid="uid://d0edf3gj3evgu"]
 
 [ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="1_ckxqd"]
+[ext_resource type="Script" path="res://Scripts/Ui/spell_button.gd" id="2_wh6vu"]
 
 [node name="SpellButton" type="TextureButton"]
 texture_normal = ExtResource("1_ckxqd")
 stretch_mode = 0
+script = ExtResource("2_wh6vu")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

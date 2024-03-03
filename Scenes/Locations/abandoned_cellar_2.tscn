@@ -23,13 +23,12 @@ texture = ExtResource("2_1ja3w")
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="abandoned_cellar" parent="Interactables" instance=ExtResource("5_qflyu")]
-position = Vector2(45, 202)
+position = Vector2(18, 207)
 interactable_name = "door_to_abandoned_cellar"
 mouse_text = "Next Room"
 destination_room = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/abandoned_cellar"]
-position = Vector2(-30, 5)
 shape = SubResource("RectangleShape2D_7r8ik")
 
 [node name="tutorial_enemy" parent="Interactables" instance=ExtResource("5_qflyu")]
@@ -39,7 +38,6 @@ mouse_text = "???"
 interaction = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/tutorial_enemy"]
-position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_2ow6q")
 
 [node name="Enemies" type="Node2D" parent="."]

@@ -35,13 +35,25 @@ var character_data: CharacterData
 func _ready():
 	add_to_group("playable")
 	if Ui.save.save_exists() && Ui.save.characters.has(character_name):
+		character_data = Ui.save.characters[character_name]
 		character_texture.set_texture(character_data.texture)
-		#name = character_data.character_name
+		var spell_nodes = get_tree().get_nodes_in_group("spell")
+		var spell_node = get_node("spells")
+		for node in spell_nodes:
+			print_debug(node)
+			spell_node.remove_child(node)
+			node.queue_free()
+		
+		for spell in character_data.spells:
+			print_debug(spell)
+			var spell_scene = load(spell.scene_path)
+			var new_spell = spell_scene.instantiate()
+			new_spell.spell_data = spell
+			spell_node.add_child(new_spell)
 	else:
 		character_data = CharacterData.new()
-		Ui.save.rooms[character_name] = character_data
+		Ui.save.characters[character_name] = character_data
 		character_data.character_name = character_name 
-		#name = character_data.character_name
 		character_data.texture = texture
 		character_texture.set_texture(texture)
 		character_data.max_hit_points = max_hit_points
@@ -55,11 +67,11 @@ func _ready():
 		character_data.speed = speed
 		character_data.wisdom = wisdom
 		character_data.active_character = active_character
-		
-		var spell = SpellData.new()
-		spell.spell_name = "Magic Attack"
-		spell.damage = 5
-		character_data.spells.append(spell)
+		var spells_node = get_node("spells").get_children()
+		var temp_list: Array[SpellData] = []
+		for spell in spells_node:
+			temp_list.append(spell.spell_data)
+		character_data.spells = temp_list
 
 	#Set UI
 	hp_label.text = str(character_data.cur_hit_points) + "/" +  str(character_data.max_hit_points)

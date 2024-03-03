@@ -39,6 +39,7 @@ interactable_name = "door_to_outside"
 mouse_text = "???"
 locked = true
 log_text_locked_interaction = "It's locked"
+destination_room = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/OutsideDoor"]
 shape = SubResource("RectangleShape2D_1a2r6")

@@ -19,18 +19,10 @@ func start_fight():
 			
 	for player in player_nodes:
 		if player.character_data.active_character:
-			create_action_bar(player.character_data)
+			create_spell_bar(player.character_data)
 			
 
-func create_action_bar(character_data: CharacterData):
-	for action in character_data.ACTION.keys():
-		if action != character_data.ACTION.find_key(character_data.ACTION.NONE):
-			var action_button = load("res://Scenes/ReusableScenes/spell_button.tscn")
-			var button_instance = action_button.instantiate()
-			button_instance.name = action
-			Ui.actions_hbox.add_child(button_instance)
-			Ui.actions_hbox.show()
-			
+func create_spell_bar(character_data: CharacterData):			
 	for spell in character_data.spells:
 		var spell_button = load("res://Scenes/ReusableScenes/spell_button.tscn")
 		var button_instance = spell_button.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://deslymf6pdlx7"]
+[gd_scene load_steps=13 format=3 uid="uid://deslymf6pdlx7"]
 
 [ext_resource type="Texture2D" uid="uid://dvm7h38tia6vq" path="res://Assets/UI/BasicWindow.png" id="1_chds7"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="1_kpsve"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bjlt5jkuty15l" path="res://Assets/UI/Button.png" id="5_28ulr"]
 [ext_resource type="Texture2D" uid="uid://dnywpmk10p3kg" path="res://Assets/UI/SkillBar.png" id="6_eutvf"]
 [ext_resource type="Texture2D" uid="uid://dwvtyn7ggk5sy" path="res://Assets/Player/MagicalGirl_CharacterSheet.png" id="7_dgugd"]
+[ext_resource type="PackedScene" uid="uid://cp46pk3xoqsjw" path="res://Scenes/ReusableScenes/spell.tscn" id="8_32civ"]
 [ext_resource type="Texture2D" uid="uid://clr38ctsr5c57" path="res://icon.svg" id="9_u445k"]
 
 [sub_resource type="Theme" id="Theme_payir"]
@@ -34,6 +35,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DialogueBox" type="TextureRect" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -124,10 +126,25 @@ intelligence = 50
 speed = 5
 wisdom = 3
 
+[node name="spells" type="Node" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter"]
+
+[node name="spell" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter/spells" instance=ExtResource("8_32civ")]
+spell_name = "Transformation"
+
+[node name="spell2" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter/spells" instance=ExtResource("8_32civ")]
+spell_name = "Purify"
+damage = 10
+
 [node name="PlayableCharacter2" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
 visible = false
 layout_mode = 1
 character_name = "sidekick"
+
+[node name="spells" type="Node" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter2"]
+
+[node name="spell" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter2/spells" instance=ExtResource("8_32civ")]
+spell_name = "Cure"
+heal = 5
 
 [node name="Equipment" type="TextureButton" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -245,13 +262,30 @@ texture = ExtResource("6_eutvf")
 expand_mode = 1
 
 [node name="Actions" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
-visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
 offset_right = 233.0
 offset_bottom = 44.0
 alignment = 1
+
+[node name="Examine Enemy" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/Actions"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Attack" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/Actions"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Flee" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/Actions"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
 
 [node name="Spells" type="HBoxContainer" parent="CanvasLayer/GameUI/InteractionButtonBar"]
 visible = false
@@ -261,6 +295,12 @@ offset_top = 10.0
 offset_right = 233.0
 offset_bottom = 44.0
 alignment = 1
+
+[node name="Back" type="TextureButton" parent="CanvasLayer/GameUI/InteractionButtonBar/Spells"]
+layout_mode = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
 
 [node name="InteractionLabel" type="Label" parent="CanvasLayer/GameUI"]
 layout_mode = 0
@@ -403,6 +443,18 @@ text = "Change Character"
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Inventory/InventoryList" to="." method="_on_inventory_list_item_selected"]
+[connection signal="mouse_entered" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy" to="." method="_on_examine_enemy_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Attack" to="." method="_on_attack_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Attack" to="." method="_on_attack_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Flee" to="." method="_on_flee_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Flee" to="." method="_on_flee_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/GameUI/InteractionButtonBar/Actions/Flee" to="." method="_on_flee_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/GameUI/InteractionButtonBar/Spells/Back" to="." method="_on_back_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/GameUI/InteractionButtonBar/Spells/Back" to="." method="_on_back_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/GameUI/InteractionButtonBar/Spells/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleScreen/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

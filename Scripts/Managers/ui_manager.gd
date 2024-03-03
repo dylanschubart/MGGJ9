@@ -114,7 +114,77 @@ func _on_inventory_pressed():
 	else:
 		inventory_list.set_visible(true)
 
+# --------> INTERACTIONBUTTONBAR ACTIONS
+func _on_examine_enemy_mouse_entered():
+	var btn = $"CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy"
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	set_interaction_label(btn.name)
 
+
+func _on_examine_enemy_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+
+
+func _on_examine_enemy_pressed():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+	var btn = $"CanvasLayer/GameUI/InteractionButtonBar/Actions/Examine Enemy"
+	print_debug("clicked %s" % btn.name)
+
+
+func _on_attack_mouse_entered():
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Actions/Attack
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	set_interaction_label(btn.name)
+
+
+func _on_attack_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+
+
+func _on_attack_pressed():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Actions/Attack
+	print_debug("clicked %s" % btn.name)
+	spells_hbox.show()
+	actions_hbox.hide()
+
+
+func _on_flee_mouse_entered():
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Actions/Flee
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	set_interaction_label(btn.name)
+
+
+func _on_flee_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+
+
+func _on_flee_pressed():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Spells/Back
+
+func _on_back_pressed():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Spells/Back
+	print_debug("clicked %s" % btn.name)
+	spells_hbox.hide()
+	actions_hbox.show()
+
+func _on_back_mouse_entered():
+	var btn = $CanvasLayer/GameUI/InteractionButtonBar/Spells/Back
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	set_interaction_label(btn.name)
+
+func _on_back_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_interaction_label("")
 
 # --------> DEBUG
 func _on_save_pressed():
@@ -144,3 +214,8 @@ func _on_change_character_pressed():
 	else:
 		side_character.hide()
 		protagonist.show()
+
+
+
+
+

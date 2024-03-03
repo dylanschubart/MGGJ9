@@ -20,7 +20,4 @@ extends Resource
 
 @export var active_character: bool
 
-enum ACTION {NONE, EXAMINE, ATTACK, FLEE}
-@export var action: ACTION
 @export var spells: Array[SpellData]
-@export var current_actions: Array
