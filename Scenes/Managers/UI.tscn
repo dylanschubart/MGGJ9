@@ -89,6 +89,7 @@ offset_left = 13.0
 offset_top = 15.0
 offset_right = 245.0
 offset_bottom = 95.0
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 scroll_following = true
 
@@ -133,7 +134,7 @@ spell_name = "Transformation"
 
 [node name="spell2" parent="CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter/spells" instance=ExtResource("8_32civ")]
 spell_name = "Purify"
-damage = 10
+damage = 5
 
 [node name="PlayableCharacter2" parent="CanvasLayer/GameUI/FocusedCharacter" instance=ExtResource("4_qd4fk")]
 visible = false

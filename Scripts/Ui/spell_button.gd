@@ -1,5 +1,5 @@
 extends TextureButton
-
+var spell_data = SpellData
 
 func _on_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -12,4 +12,4 @@ func _on_mouse_exited():
 
 
 func _on_pressed():
-	print_debug("clicked %s" % name)
+	CombatManager.use_spell(spell_data)
