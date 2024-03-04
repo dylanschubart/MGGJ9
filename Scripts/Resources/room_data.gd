@@ -6,3 +6,4 @@ extends Resource
 @export var enemies: Array
 @export var current_scene: bool
 @export var scene_path: String
+@export var enemy_interactable_sprite: Texture2D

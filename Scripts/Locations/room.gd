@@ -8,6 +8,8 @@ enum ROOM_NAMES {abandoned_cellar, abandoned_cellar_2}
 @export var enemies: Array[EnemyData]
 @export var current_scene: bool
 @export var scene_path: String
+@export var enemy_interactable_sprite: Texture2D
+
 var room_key: String
 
 func _ready():
@@ -16,12 +18,15 @@ func _ready():
 	load_room()
 
 func load_room():
+	add_to_group("room")
 	if Ui.save.save_exists() && Ui.save.rooms.has(room_key):
 		room_data = Ui.save.rooms[room_key]
 		print_debug("saved room")
 		var persistent_nodes = get_tree().get_nodes_in_group("persistent")
 		var interactable_node = get_node("Interactables")
 		var enemy_node = get_node("Enemies")
+		var enemy_sprite_node = get_node("EnemySprites")
+
 		for node in persistent_nodes:
 			interactable_node.remove_child(node)
 			node.queue_free()
@@ -38,6 +43,13 @@ func load_room():
 				var new_enemy = enemy_scene.instantiate()
 				new_enemy.enemy_data = enemy
 				enemy_node.add_child(new_enemy)
+				if room_data.enemy_interactable_sprite:
+					var enemy_sprites = enemy_sprite_node.get_children()
+					enemy_sprites[0].set_texture(room_data.enemy_interactable_sprite)
+					
+			else:
+				var enemy_sprites = enemy_sprite_node.get_children()
+				enemy_sprites[0].set_texture(null)
 			
 	else:
 		print_debug("create new room")
@@ -53,13 +65,24 @@ func load_room():
 			
 		room_data.interactables = temp_interactables
 		var enemy_parent = get_node("Enemies")
+		var enemy_sprite_node = get_node("EnemySprites")
+
+		
 		var enemy_children = enemy_parent.get_children()
 		var temp_enemies: Array = []
 		for node in enemy_children:
 			temp_enemies.append(node.enemy_data)
 			
+
 		room_data.enemies = temp_enemies
 		room_data.current_scene = current_scene
 		room_data.scene_path = scene_path
+		
+		if enemy_interactable_sprite:
+			room_data.enemy_interactable_sprite = enemy_interactable_sprite
+			var enemy_sprites = enemy_sprite_node.get_children()
+			for sprite in enemy_sprites:
+				sprite.set_texture(room_data.enemy_interactable_sprite)
+
 		Ui.save.save_game()
 		

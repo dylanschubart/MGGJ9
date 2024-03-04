@@ -21,6 +21,10 @@ scene_path = "res://Scenes/Locations/abandoned_cellar.tscn"
 position = Vector2(320, 180)
 texture = ExtResource("3_mwo62")
 
+[node name="EnemySprites" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="InteractableBucket" parent="Interactables" groups=["persistent"] instance=ExtResource("4_edf1w")]
@@ -52,5 +56,3 @@ destination_room = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/abandoned_cellar_2"]
 shape = SubResource("RectangleShape2D_f25dy")
-
-[node name="Enemies" type="Node2D" parent="."]

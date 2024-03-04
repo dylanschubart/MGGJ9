@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ioxt4q3t2o0i"
-path="res://.godot/imported/AbandonedCellar2.png-59e8fc7c9a82ee59300eae1abb66bf48.ctex"
+uid="uid://b8mlo7xfc12xx"
+path="res://.godot/imported/tutorial_enemy.png-8aaf04b7ce914e664e6053238a7d8a28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Locations/AbandonedCellar2.png"
-dest_files=["res://.godot/imported/AbandonedCellar2.png-59e8fc7c9a82ee59300eae1abb66bf48.ctex"]
+source_file="res://Assets/Enemies/tutorial_enemy.png"
+dest_files=["res://.godot/imported/tutorial_enemy.png-8aaf04b7ce914e664e6053238a7d8a28.ctex"]
 
 [params]
 

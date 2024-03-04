@@ -56,6 +56,6 @@ func interaction(interaction: INTERACTION, room: String = "", node: Node = null)
 			
 		INTERACTION.BATTLE:
 			LogManager.write_to_log(log_text_interaction)
-			disable_interaction = true	
+			disable_interaction = true
 			CombatManager.start_fight()
 	

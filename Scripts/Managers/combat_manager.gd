@@ -1,6 +1,7 @@
 extends Node
 var current_enemy: Node
 var current_character: Node
+var current_room: Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,6 +15,8 @@ func start_fight():
 	SoundManager.playMusic("crxw-unpledged-alliance")
 	var enemy_nodes = get_tree().get_nodes_in_group("enemy")
 	var player_nodes = get_tree().get_nodes_in_group("playable")
+	var room_nodes = get_tree().get_nodes_in_group("room")
+
 	for enemy in enemy_nodes:
 			current_enemy = enemy
 			enemy.show()
@@ -22,12 +25,22 @@ func start_fight():
 		if player.character_data.active_character:
 			current_character = player
 			create_spell_bar(player.character_data)
+	
+	for room in room_nodes:
+			current_room = room
 			
 func end_fight():
 	SoundManager.playMusic("crxw-v0idness")
 	current_enemy.hide();
 	Ui.save.save_game()
 	Ui.toggle_element(Ui.interaction_button_bar)
+
+	if current_room.room_data.enemy_interactable_sprite:
+		var enemy_sprite_node = current_room.get_node("EnemySprites")
+		var enemy_sprites = enemy_sprite_node.get_children()
+		for sprite in enemy_sprites:
+			print_debug(sprite)
+			sprite.set_texture(null)
 	
 
 func create_spell_bar(character_data: CharacterData):

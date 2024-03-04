@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfaqamjvoijhw"
-path="res://.godot/imported/TutorialEnemy.png-a38086e663ec092dda1f34a470764780.ctex"
+uid="uid://cj1aar1jnb0m1"
+path="res://.godot/imported/tutorial_enemy_interactable.png-bb73575fc4119b060b8ac32c0c987f10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/TutorialEnemy.png"
-dest_files=["res://.godot/imported/TutorialEnemy.png-a38086e663ec092dda1f34a470764780.ctex"]
+source_file="res://Assets/Locations/tutorial_enemy_interactable.png"
+dest_files=["res://.godot/imported/tutorial_enemy_interactable.png-bb73575fc4119b060b8ac32c0c987f10.ctex"]
 
 [params]
 

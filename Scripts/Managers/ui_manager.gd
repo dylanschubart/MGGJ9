@@ -16,6 +16,7 @@ var dialogue_line
 #Items
 @onready var inventory_list = $CanvasLayer/GameUI/Inventory/InventoryList
 @onready var inventory_popup = $CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp
+@onready var items = $CanvasLayer/GameUI/Inventory/InventoryList/Items
 var selected_item_popup_index;
 #Equipment
 @onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
