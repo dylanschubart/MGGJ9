@@ -10,4 +10,4 @@ func set_equipment():
 	return equipment_list
 
 func examine_item(index):
-	LogManager.write_to_log(equipment_list[index - 1].item_examine_text)
+	LogManager.write_to_log(equipment_list[index].item_examine_text)

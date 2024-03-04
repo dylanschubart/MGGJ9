@@ -110,6 +110,7 @@ func _on_inventory_list_item_selected(index):
 
 func _on_equipment_list_item_selected(index):
 	equipment_popup.popup()
+	print_debug(index)
 	selected_equipment_popup_index = index
 
 
@@ -240,7 +241,6 @@ func _on_inventory_pop_up_index_pressed(index):
 	if inventory_popup.get_item_text(index) == "Examine":
 		InventoryManager.examine_item(selected_item_popup_index)
 
-func _on_equipment_pop_up_index_pressed(index):
-	LogManager.write_to_log("pressed equip")
+func _on_equipment_popup_index_pressed(index):
 	if equipment_popup.get_item_text(index) == "Examine":
-		EquipmentManager.examine_item(selected_item_popup_index)
+		EquipmentManager.examine_item(selected_equipment_popup_index)
