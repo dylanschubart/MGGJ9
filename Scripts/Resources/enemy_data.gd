@@ -17,8 +17,8 @@ func take_damage(spell_data: SpellData, player: Node):
 		death()
 	else:
 		health = new_health
-		var text = enemy_name + "'s new health " + str(health)
-		LogManager.write_to_log(text)
+		LogManager.write_to_log(enemy_name + " takes " + str(spell_data.damage) + " damage");
+		LogManager.write_to_log(enemy_name + " now has " + str(health) + " health");
 		await attack(player)
 		Ui.refresh_stats_UI(player)
 
@@ -31,7 +31,7 @@ func attack(player: Node):
 	
 func death():
 	dead = true
-	LogManager.write_to_log("enemy is dead")
+	LogManager.write_to_log(enemy_name + " is dead!")
 	CombatManager.end_fight()
 	for item in loot:
 		InventoryManager.add_item(item)

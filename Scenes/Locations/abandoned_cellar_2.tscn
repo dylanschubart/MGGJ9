@@ -35,7 +35,7 @@ enemy_name = "Key Keeper"
 texture = ExtResource("6_eeexe")
 health = 10
 damage = 2
-log_attack_text = "attacked you with his tounge for"
+log_attack_text = "attacked you with their tongue for"
 
 [node name="Interactables" type="Node2D" parent="."]
 

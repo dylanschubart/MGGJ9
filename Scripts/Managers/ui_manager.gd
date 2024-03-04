@@ -104,12 +104,13 @@ func _on_options_pressed():
 func _on_exit_pressed():
 	get_tree().quit()
 
-func _on_inventory_list_item_selected(_index):
+func _on_inventory_list_item_selected(index):
 	inventory_popup.popup()
-	selected_item_popup_index = _index
+	selected_item_popup_index = index
 
-func _on_equipment_list_item_selected(_index):
+func _on_equipment_list_item_selected(index):
 	equipment_popup.popup()
+	selected_equipment_popup_index = index
 
 
 func _on_equipment_pressed():
@@ -237,4 +238,9 @@ func _on_change_character_pressed():
 
 func _on_inventory_pop_up_index_pressed(index):
 	if inventory_popup.get_item_text(index) == "Examine":
-		LogManager.write_to_log(inventory_list.get_item_text(selected_item_popup_index))
+		InventoryManager.examine_item(selected_item_popup_index)
+
+func _on_equipment_pop_up_index_pressed(index):
+	LogManager.write_to_log("pressed equip")
+	if equipment_popup.get_item_text(index) == "Examine":
+		EquipmentManager.examine_item(selected_item_popup_index)

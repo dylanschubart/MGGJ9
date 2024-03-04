@@ -454,6 +454,7 @@ text = "Change Character"
 
 [connection signal="pressed" from="CanvasLayer/GameUI/Equipment" to="." method="_on_equipment_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
+[connection signal="index_pressed" from="CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Inventory/InventoryList" to="." method="_on_inventory_list_item_selected"]
 [connection signal="index_pressed" from="CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp" to="." method="_on_inventory_pop_up_index_pressed"]

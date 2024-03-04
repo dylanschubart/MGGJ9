@@ -13,12 +13,13 @@ func _process(_delta):
 
 func start_fight():
 	SoundManager.playMusic("crxw-unpledged-alliance")
+	
 	var enemy_nodes = get_tree().get_nodes_in_group("enemy")
 	var player_nodes = get_tree().get_nodes_in_group("playable")
 	var room_nodes = get_tree().get_nodes_in_group("room")
-
 	for enemy in enemy_nodes:
 			current_enemy = enemy
+			LogManager.write_to_log(current_enemy.enemy_data.enemy_name + " Attacks!");
 			enemy.show()
 			
 	for player in player_nodes:
@@ -56,6 +57,8 @@ func create_spell_bar(character_data: CharacterData):
 
 func use_spell(spell_data):
 	if spell_data.damage > 0:
+		LogManager.write_to_log(current_character.name + " casts " + spell_data.spell_name + " against " + current_enemy.enemy_data.enemy_name);
 		current_enemy.enemy_data.take_damage(spell_data, current_character)
 	if spell_data.heal > 0:
+		LogManager.write_to_log(current_character.name + " casts " + spell_data.spell_name + " to heal themself.");
 		pass
