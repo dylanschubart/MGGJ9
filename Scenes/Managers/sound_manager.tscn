@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://rpi6nrg70k76"]
+[gd_scene load_steps=12 format=3 uid="uid://rpi6nrg70k76"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/SoundManager.gd" id="1_1qvtb"]
+[ext_resource type="AudioStream" uid="uid://cy658ce2rstwt" path="res://Music and Sound/SoundEffects/Enemies/tutorial_enemy_attack.ogg" id="2_8qcu3"]
 [ext_resource type="AudioStream" uid="uid://134kql6fcdl0" path="res://Music and Sound/Music/crxw - v0idness.mp3" id="2_d2len"]
 [ext_resource type="AudioStream" uid="uid://chfecnxp12exa" path="res://Music and Sound/Music/stylish endeavour.mp3" id="3_62mmq"]
+[ext_resource type="AudioStream" uid="uid://bnbebwcnnkwtm" path="res://Music and Sound/SoundEffects/Enemies/tutorial_enemy_death.ogg" id="3_jdfln"]
 [ext_resource type="AudioStream" uid="uid://r1hw7i7elsd" path="res://Music and Sound/Music/too late for halloween_.mp3" id="4_2gqj6"]
+[ext_resource type="AudioStream" uid="uid://bvmb1x55j1v3y" path="res://Music and Sound/SoundEffects/Enemies/tutorial_enemy_taking_dmg.ogg" id="4_fmh2c"]
+[ext_resource type="AudioStream" uid="uid://ckg0ibo3f8e2p" path="res://Music and Sound/SoundEffects/Player/player_taking_dmg.ogg" id="4_ys1fk"]
+[ext_resource type="AudioStream" uid="uid://dmhoxyrrnila1" path="res://Music and Sound/SoundEffects/Player/attack_purify.ogg" id="5_mjie7"]
 [ext_resource type="AudioStream" uid="uid://grijwiki20aw" path="res://Music and Sound/Music/unpledged alliance.mp3" id="5_q1jpl"]
 [ext_resource type="AudioStream" uid="uid://mbu1t0e20ii0" path="res://Music and Sound/Music/whats happening to my earZ.mp3" id="6_s2yst"]
 
@@ -14,21 +19,49 @@ script = ExtResource("1_1qvtb")
 
 [node name="Sound" type="Node" parent="."]
 
+[node name="tutorial_enemy_attack" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("2_8qcu3")
+bus = &"Sound"
+
+[node name="tutorial_enemy_death" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("3_jdfln")
+bus = &"Sound"
+
+[node name="tutorial_enemy_taking_dmg" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("4_fmh2c")
+volume_db = 12.549
+pitch_scale = 0.9
+bus = &"Sound"
+
+[node name="player_taking_dmg" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("4_ys1fk")
+volume_db = 3.312
+bus = &"Sound"
+
+[node name="player_attack_purify" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("5_mjie7")
+bus = &"Sound"
+
 [node name="Music" type="Node" parent="."]
 
 [node name="crxw-v0idness" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_d2len")
+bus = &"Music"
 
 [node name="crxw-stylish-endeavour" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_62mmq")
+bus = &"Music"
 
 [node name="crxw-too-late-for-halloween" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("4_2gqj6")
+bus = &"Music"
 
 [node name="crxw-unpledged-alliance" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("5_q1jpl")
+bus = &"Music"
 
 [node name="crxw-whats-happening-to-my-earZ" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("6_s2yst")
+bus = &"Music"
 
 [node name="Ambience" type="Node" parent="."]

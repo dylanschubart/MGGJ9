@@ -21,21 +21,22 @@ func playVoice(voice):
 
 func playSound(sound):
 	var audioPlayer = $Sound.get_node(sound)
-	lastSound = audioPlayer
-	audioPlayer.play()
-
-func stopLastSound(sound):
-	var audioPlayer = $Sound.get_node(sound)
-	audioPlayer.stop()
-
-func playNextSound(sound):
-	var audioPlayer = $Sound.get_node(sound)
-
 	if lastSound != null:
 		if lastSound.playing:
 			await lastSound.finished
 			lastSound = audioPlayer
 			audioPlayer.play()
+	else:
+		lastSound = audioPlayer
+		audioPlayer.play()
+
+func stopLastSound(sound):
+	var audioPlayer = $Sound.get_node(sound)
+	audioPlayer.stop()
+
+# func playNextSound(sound):
+# 	var audioPlayer = $Sound.get_node(sound)
+
 
 func playMusic(music):
 	var audioPlayer = $Music.get_node(music)

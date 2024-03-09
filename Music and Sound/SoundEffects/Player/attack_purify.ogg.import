@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dmhoxyrrnila1"
+path="res://.godot/imported/attack_purify.ogg-79ac6d55b6caff9c5c1a7c06638387cd.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music and Sound/SoundEffects/Player/attack_purify.ogg"
+dest_files=["res://.godot/imported/attack_purify.ogg-79ac6d55b6caff9c5c1a7c06638387cd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

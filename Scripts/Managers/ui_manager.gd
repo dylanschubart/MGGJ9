@@ -6,12 +6,20 @@ var dialogue = load("res://Dialogue/Intro.dialogue")
 var dialogue_line
 
 @onready var game_ui = $CanvasLayer/GameUI
+
 @onready var dialogue_box = $CanvasLayer/GameUI/DialogueBox
+@onready var entity = $CanvasLayer/GameUI/DialogueBox/Entity
+@onready var animation_player = $CanvasLayer/GameUI/DialogueBox/AnimationPlayer
 @onready var logBox = $CanvasLayer/GameUI/LogBox
 @onready var log_rich_text = $CanvasLayer/GameUI/LogBox/Log
 @onready var focused_character = $CanvasLayer/GameUI/FocusedCharacter
 @onready var protagonist = $CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter
 @onready var side_character = $CanvasLayer/GameUI/FocusedCharacter/PlayableCharacter2
+@onready var continue_btn = $CanvasLayer/TitleScreen/VBoxContainer/Continue
+
+#Combat
+@onready var combat_animation_player = $CanvasLayer/GameUI/CombatEffects/CombatAnimationPlayer
+@onready var combat_particles = $CanvasLayer/GameUI/CombatEffects/CPUParticles2D
 
 #Items
 @onready var inventory_list = $CanvasLayer/GameUI/Inventory/InventoryList
@@ -32,9 +40,13 @@ var selected_equipment_popup_index;
 @onready var actions_hbox = $CanvasLayer/GameUI/InteractionButtonBar/Actions
 @onready var spells_hbox = $CanvasLayer/GameUI/InteractionButtonBar/Spells
 
+var save_exists: bool
 
 func _ready():
 	SoundManager.playMusic("crxw-v0idness")
+	save_exists = save.save_exists()
+	print_debug(save_exists)
+	continue_btn.set_disabled(!save_exists)
 
 func _process(_delta):
 	if get_viewport().get_mouse_position() && interaction_label:
@@ -49,24 +61,39 @@ func toggle_element(element:Node):
 func set_interaction_label(text:String):
 	interaction_label.text = text
 
-func create_or_load_game():
+func create_game():
+	toggle_element(title_screen)
+	toggle_element(game_ui)
+	SoundManager.lowerLastMusicVolume()
 	if save.save_exists():
-		save = save.load_game()
-		for room in save.rooms.values():
-			if room.current_scene:
-				SceneManager.change_scene(SceneManager.room_scenes[room.room_name])
-	else:
-		save.inventory = InventoryData.new()
-		save.inventory.items = InventoryManager.set_inventory()
-		save.equipment = EquipmentData.new()
-		save.equipment.equipedItems = EquipmentManager.set_equipment()
-		SceneManager.change_scene(SceneManager.room_scenes.abandoned_cellar)
-		start_dialogue(dialogue)
-		save.save_game()
-		print_debug("new Save")
+		save.delete_save()
+
+	save.inventory = InventoryData.new()
+	save.inventory.items = InventoryManager.set_inventory()
+	save.equipment = EquipmentData.new()
+	save.equipment.equipedItems = EquipmentManager.set_equipment()
+	SceneManager.change_scene(SceneManager.room_scenes.abandoned_cellar)
+	start_dialogue(dialogue)
+	save.save_game()
+	print_debug("new Save")
+
+func load_game():
+	toggle_element(title_screen)
+	toggle_element(game_ui)
+	SoundManager.lowerLastMusicVolume()
+	save = save.load_game()
+	for room in save.rooms.values():
+		if room.current_scene:
+			SceneManager.change_scene(SceneManager.room_scenes[room.room_name])
 		
+func _on_new_game_pressed():
+	SoundManager.lowerLastMusicVolume()
+	create_game()
+
 func start_dialogue(dialogue_resource):
 	toggle_element(dialogue_box)
+	toggle_element(entity)
+	animation_player.play("Entity")
 	dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue_resource, "start")
 	dialogue_box_label.dialogue_line = dialogue_line
 	character_label.text = tr(dialogue_line.character, "dialogue")
@@ -90,13 +117,12 @@ func next(next_id: String):
 		dialogue_box_label.dialogue_line = dialogue_line
 		dialogue_box_label.type_out()
 	else:
+		toggle_element(entity)
 		toggle_element(dialogue_box)
 	
-func _on_start_pressed():
-	toggle_element(title_screen)
-	toggle_element(game_ui)
+func _on_continue_pressed():
 	SoundManager.lowerLastMusicVolume()
-	create_or_load_game()
+	load_game()
 	
 func _on_options_pressed():
 	pass # Replace with function body.

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://csriyw5i7f24y"
+path="res://.godot/imported/enemy_taking_dmg.ogg-8ff337b120ca220ab064e3875953d87e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music and Sound/SoundEffects/Enemies/enemy_taking_dmg.ogg"
+dest_files=["res://.godot/imported/enemy_taking_dmg.ogg-8ff337b120ca220ab064e3875953d87e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

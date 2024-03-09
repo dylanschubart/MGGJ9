@@ -57,7 +57,8 @@ func create_spell_bar(character_data: CharacterData):
 
 func use_spell(spell_data):
 	if spell_data.damage > 0:
-		LogManager.write_to_log(current_character.name + " casts " + spell_data.spell_name + " against " + current_enemy.enemy_data.enemy_name);
+		# LogManager.write_to_log(current_character.name + " casts " + spell_data.spell_name + " against " + current_enemy.enemy_data.enemy_name);
+		
 		current_enemy.enemy_data.take_damage(spell_data, current_character)
 	if spell_data.heal > 0:
 		LogManager.write_to_log(current_character.name + " casts " + spell_data.spell_name + " to heal themself.");

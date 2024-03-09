@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ckg0ibo3f8e2p"
+path="res://.godot/imported/player_taking_dmg.ogg-e32b6de0fb14bf9e57cf91996ac4a880.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music and Sound/SoundEffects/Player/player_taking_dmg.ogg"
+dest_files=["res://.godot/imported/player_taking_dmg.ogg-e32b6de0fb14bf9e57cf91996ac4a880.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
