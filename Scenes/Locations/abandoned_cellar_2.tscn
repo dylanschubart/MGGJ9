@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blmdrjnhk6xas"]
+[gd_scene load_steps=11 format=3 uid="uid://blmdrjnhk6xas"]
 
 [ext_resource type="Script" path="res://Scripts/Locations/room.gd" id="1_8v82j"]
 [ext_resource type="Texture2D" uid="uid://cj1aar1jnb0m1" path="res://Assets/Locations/tutorial_enemy_interactable.png" id="2_1gryv"]
@@ -6,6 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dpcoerie4vhby" path="res://Scenes/ReusableScenes/enemy.tscn" id="3_a0ro1"]
 [ext_resource type="PackedScene" uid="uid://oxacnte0u3cu" path="res://Scenes/ReusableScenes/interactable.tscn" id="5_qflyu"]
 [ext_resource type="Texture2D" uid="uid://b8mlo7xfc12xx" path="res://Assets/Enemies/tutorial_enemy.png" id="6_eeexe"]
+[ext_resource type="Script" path="res://Scripts/Resources/item_data.gd" id="6_sj5jn"]
+
+[sub_resource type="Resource" id="Resource_ej0at"]
+script = ExtResource("6_sj5jn")
+item_name = "Sticky Key"
+item_examine_text = "It's a Sticky Key, maybe it unlocks the front door"
+item_equipable = false
+item_equiped = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8ik"]
 size = Vector2(24, 162)
@@ -36,6 +44,7 @@ texture = ExtResource("6_eeexe")
 health = 10
 damage = 2
 log_attack_text = "attacked you with their tongue for"
+loot = Array[ExtResource("6_sj5jn")]([SubResource("Resource_ej0at")])
 
 [node name="Interactables" type="Node2D" parent="."]
 

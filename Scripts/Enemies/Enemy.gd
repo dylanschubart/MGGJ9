@@ -12,6 +12,9 @@ var enemy_data: EnemyData
 @export_category("Enemy attack Text, damage Number will be added to the end")
 @export var log_attack_text: String
 
+@export_category("Loot")
+@export var loot: Array[ItemData]
+
 @onready var sprite = $Sprite2D
 
 var dead: bool

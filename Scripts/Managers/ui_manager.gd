@@ -266,6 +266,9 @@ func _on_change_character_pressed():
 func _on_inventory_pop_up_index_pressed(index):
 	if inventory_popup.get_item_text(index) == "Examine":
 		InventoryManager.examine_item(selected_item_popup_index)
+		return
+	InventoryManager.remove_item(selected_item_popup_index)
+	
 
 func _on_equipment_popup_index_pressed(index):
 	if equipment_popup.get_item_text(index) == "Examine":

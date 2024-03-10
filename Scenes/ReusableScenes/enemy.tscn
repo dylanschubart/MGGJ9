@@ -6,10 +6,6 @@
 [node name="Enemy" type="Node2D" groups=["enemy"]]
 position = Vector2(320, 179)
 script = ExtResource("1_o0024")
-enemy_name = null
-health = null
-damage = null
-log_attack_text = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
