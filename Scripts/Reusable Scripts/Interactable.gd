@@ -41,7 +41,7 @@ func _ready():
 		name = interactable_data.interactable_name
 		#set the nodes up and add the collision shape
 		set_global_position(interactable_data.interactable_position)
-		var collision = CollisionShape2D.new()
+		collision = CollisionShape2D.new()
 		collision.set_shape(interactable_data.col_shape)
 		collision.get_shape().size = interactable_data.col_size
 		add_child(collision)
