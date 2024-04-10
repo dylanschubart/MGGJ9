@@ -28,6 +28,8 @@ func add_item(item_data: ItemData):
 
 
 func examine_item(index: int):
+	var type = equipment_list[index].ITEM_TYPES.find_key(equipment_list[index].item_type)
+	LogManager.write_to_log("Item type: " + type)
 	LogManager.write_to_log(equipment_list[index].item_examine_text)
 
 func remove_item_from_equipment(index: int):

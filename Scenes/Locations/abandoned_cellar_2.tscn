@@ -35,6 +35,7 @@ script = ExtResource("8_jjcvl")
 item_name = "Sitcky Key"
 item_examine_text = "Gross Looking Key"
 item_equipable = false
+item_type = 0
 item_equiped = false
 item_in_inventory = false
 scene_path = "res://Scenes/ReusableScenes/item.tscn"

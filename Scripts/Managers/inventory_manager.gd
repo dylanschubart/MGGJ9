@@ -38,13 +38,24 @@ func remove_item_from_inventory(index: int):
 	set_inventory()
 	
 func examine_item(index):
+	var type = item_list[index].ITEM_TYPES.find_key(item_list[index].item_type)
+	LogManager.write_to_log("Item type: " + type)
 	LogManager.write_to_log(item_list[index].item_examine_text)
 
 func use_equip(index: int):
 	var inventory_items = Ui.inventory_items.get_children()
+	var equiped_items = Ui.save.equipment.equipedItems
 	var item = inventory_items[index]
 
 	if item.item_data.item_equipable:
+		var equiped_item_to_remove;
+		for equiped_item in equiped_items:
+			if equiped_item.item_type == item.item_data.item_type:
+				equiped_item_to_remove = equiped_item 
+		if equiped_item_to_remove != null:		
+			add_item(equiped_item_to_remove)
+			EquipmentManager.remove_item_from_equipment(equiped_items.find(equiped_item_to_remove))
+
 		EquipmentManager.add_item(item.item_data)
 		remove_item_from_inventory(index)
 	else:
