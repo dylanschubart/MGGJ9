@@ -10,9 +10,9 @@ var room_scenes: Dictionary = {
 func change_scene(room_scene: String):
 	if room_scene:
 		if current_scene:
-			var key = current_scene.ROOM_NAMES.find_key(current_scene.room_name)
-			var room_data = Ui.save.rooms[key]
-			room_data.current_scene = false
+			var current_room_key = current_scene.room_data.ROOM_NAMES.find_key(current_scene.room_data.room_name)
+			var current_room_data = Ui.save.rooms[current_room_key]
+			current_room_data.current_scene = false
 			remove_child(current_scene)
 		
 		print_debug(room_scene)
@@ -22,11 +22,14 @@ func change_scene(room_scene: String):
 		current_scene = instantiated_level
 		
 		#Ui.save.rooms.find_key()
-		var key = room_scenes.find_key(room_scene)
-		
-		var room_data = Ui.save.rooms[key]
+		var room_key = room_scenes.find_key(room_scene)
+		var room_data = Ui.save.rooms[room_key]
+
 		room_data.current_scene = true
 		Ui.save.save_game()
 		# DEBUG
-		Ui.set_currentscene_label(room_data.room_name)
+		print_debug(room_data.room_name)
+		var room_name_key = room_data.ROOM_NAMES.find_key(room_data.room_name)
+
+		Ui.set_currentscene_label(room_name_key)
 	

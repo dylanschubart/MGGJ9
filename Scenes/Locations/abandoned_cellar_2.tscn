@@ -1,67 +1,116 @@
-[gd_scene load_steps=11 format=3 uid="uid://blmdrjnhk6xas"]
+[gd_scene load_steps=19 format=3 uid="uid://blmdrjnhk6xas"]
 
 [ext_resource type="Script" path="res://Scripts/Locations/room.gd" id="1_8v82j"]
-[ext_resource type="Texture2D" uid="uid://cj1aar1jnb0m1" path="res://Assets/Locations/tutorial_enemy_interactable.png" id="2_1gryv"]
 [ext_resource type="Texture2D" uid="uid://ioxt4q3t2o0i" path="res://Assets/Locations/AbandonedCellar2.png" id="2_1ja3w"]
+[ext_resource type="Script" path="res://Scripts/Resources/room_data.gd" id="2_34gf5"]
+[ext_resource type="Texture2D" uid="uid://cj1aar1jnb0m1" path="res://Assets/Locations/tutorial_enemy_interactable.png" id="2_g4300"]
 [ext_resource type="PackedScene" uid="uid://dpcoerie4vhby" path="res://Scenes/ReusableScenes/enemy.tscn" id="3_a0ro1"]
+[ext_resource type="Script" path="res://Scripts/Resources/enemy_data.gd" id="5_ov37c"]
 [ext_resource type="PackedScene" uid="uid://oxacnte0u3cu" path="res://Scenes/ReusableScenes/interactable.tscn" id="5_qflyu"]
 [ext_resource type="Texture2D" uid="uid://b8mlo7xfc12xx" path="res://Assets/Enemies/tutorial_enemy.png" id="6_eeexe"]
-[ext_resource type="Script" path="res://Scripts/Resources/item_data.gd" id="6_sj5jn"]
+[ext_resource type="PackedScene" uid="uid://cp767gfsrx1yl" path="res://Scenes/ReusableScenes/item.tscn" id="7_4wwbg"]
+[ext_resource type="Script" path="res://Scripts/Resources/item_data.gd" id="8_jjcvl"]
+[ext_resource type="Script" path="res://Scripts/Resources/interactable_data.gd" id="8_urclt"]
 
-[sub_resource type="Resource" id="Resource_ej0at"]
-script = ExtResource("6_sj5jn")
-item_name = "Sticky Key"
-item_examine_text = "It's a Sticky Key, maybe it unlocks the front door"
+[sub_resource type="Resource" id="Resource_aexqy"]
+script = ExtResource("2_34gf5")
+room_name = 1
+interactables = Array[ExtResource("8_urclt")]([])
+enemies = Array[ExtResource("5_ov37c")]([])
+current_scene = false
+
+[sub_resource type="Resource" id="Resource_chrr6"]
+script = ExtResource("5_ov37c")
+enemy_name = "Key Keeper"
+texture = ExtResource("6_eeexe")
+health = 10
+damage = 2
+loot = Array[ExtResource("8_jjcvl")]([])
+scene_path = "res://Scenes/ReusableScenes/enemy.tscn"
+dead = false
+log_attack_text = ""
+
+[sub_resource type="Resource" id="Resource_os61j"]
+script = ExtResource("8_jjcvl")
+item_name = "Sitcky Key"
+item_examine_text = "Gross Looking Key"
 item_equipable = false
 item_equiped = false
+item_in_inventory = false
+scene_path = "res://Scenes/ReusableScenes/item.tscn"
+
+[sub_resource type="Resource" id="Resource_8bcgj"]
+script = ExtResource("8_urclt")
+interactable_name = "door_to_abandoned_cellar"
+mouse_text = "Next Room"
+locked = false
+first_interaction = false
+log_text_first_interaction = ""
+log_text_interaction = ""
+log_text_locked_interaction = ""
+disable_interaction = false
+scene_path = "res://Scenes/ReusableScenes/interactable.tscn"
+interactable_position = Vector2(0, 0)
+col_size = Vector2(0, 0)
+enemy = false
+destination = 1
+action = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8ik"]
 size = Vector2(24, 162)
+
+[sub_resource type="Resource" id="Resource_4lfqw"]
+script = ExtResource("8_urclt")
+interactable_name = "tutorial_enemy"
+mouse_text = "???"
+locked = false
+first_interaction = false
+log_text_first_interaction = ""
+log_text_interaction = ""
+log_text_locked_interaction = ""
+disable_interaction = false
+scene_path = "res://Scenes/ReusableScenes/interactable.tscn"
+interactable_position = Vector2(0, 0)
+col_size = Vector2(0, 0)
+sprite = ExtResource("2_g4300")
+enemy = true
+destination = 0
+action = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ow6q"]
 size = Vector2(24, 46)
 
 [node name="abandoned_place2" type="Node2D"]
 script = ExtResource("1_8v82j")
-room_name = 1
-enemy_interactable_sprite = ExtResource("2_1gryv")
+room_data = SubResource("Resource_aexqy")
 
 [node name="AbandonedCellar2" type="Sprite2D" parent="."]
 position = Vector2(320, 180)
 texture = ExtResource("2_1ja3w")
 
-[node name="EnemySprites" type="Node2D" parent="."]
-
-[node name="TutorialEnemyInteractable" type="Sprite2D" parent="EnemySprites"]
-position = Vector2(320, 180)
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("3_a0ro1")]
 visible = false
-enemy_name = "Key Keeper"
-texture = ExtResource("6_eeexe")
-health = 10
-damage = 2
-log_attack_text = "attacked you with their tongue for"
-loot = Array[ExtResource("6_sj5jn")]([SubResource("Resource_ej0at")])
+enemy_data = SubResource("Resource_chrr6")
+
+[node name="Item" parent="Enemies/Enemy/Loot" index="0" instance=ExtResource("7_4wwbg")]
+item_data = SubResource("Resource_os61j")
 
 [node name="Interactables" type="Node2D" parent="."]
 
-[node name="abandoned_cellar" parent="Interactables" instance=ExtResource("5_qflyu")]
+[node name="door_to_abandoned_cellar" parent="Interactables" instance=ExtResource("5_qflyu")]
 position = Vector2(18, 207)
-interactable_name = "door_to_abandoned_cellar"
-mouse_text = "Next Room"
-destination_room = 1
+interactable_data = SubResource("Resource_8bcgj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/abandoned_cellar"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/door_to_abandoned_cellar"]
 shape = SubResource("RectangleShape2D_7r8ik")
 
 [node name="tutorial_enemy" parent="Interactables" instance=ExtResource("5_qflyu")]
-position = Vector2(425, 114)
-interactable_name = "tutorial_enemy"
-mouse_text = "???"
-interaction = 3
+position = Vector2(425, 102)
+interactable_data = SubResource("Resource_4lfqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/tutorial_enemy"]
 shape = SubResource("RectangleShape2D_2ow6q")
+
+[editable path="Enemies/Enemy"]

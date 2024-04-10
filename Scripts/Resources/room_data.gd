@@ -1,9 +1,10 @@
 class_name RoomData
 extends Resource
 
-@export var room_name: String
-@export var interactables: Array
-@export var enemies: Array
+enum ROOM_NAMES {abandoned_cellar, abandoned_cellar_2}
+@export var room_name: ROOM_NAMES
+@export var interactables: Array[InteractableData]
+@export var enemies: Array[EnemyData]
 @export var current_scene: bool
-@export var scene_path: String
-@export var enemy_interactable_sprite: Texture2D
+# @export var scene_path: String
+# @export var enemy_interactable_sprite: CompressedTexture2D

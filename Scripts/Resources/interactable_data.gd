@@ -13,11 +13,15 @@ extends Resource
 @export var interactable_position: Vector2
 @export var col_shape: Shape2D
 @export var col_size: Vector2
-@export var destination: int
-@export var action: int
+
+@export var sprite: Texture2D
+@export var enemy: bool
+# @export var action: int
 
 enum ROOMS {NONE ,abandoned_cellar, abandoned_cellar_2}
 enum INTERACTION {DOOR, EXAMINE, PICK_UP, BATTLE}
+@export var destination: ROOMS
+@export var action: INTERACTION
 
 func set_label():
 	if disable_interaction:
@@ -34,7 +38,7 @@ func remove_label():
 	Ui.set_interaction_label("")
 	
 
-func interaction(interaction: INTERACTION, room: String = "", node: Node = null):
+func interact(interaction: INTERACTION, room: String = ""):
 	if disable_interaction:
 		return
 	remove_label()

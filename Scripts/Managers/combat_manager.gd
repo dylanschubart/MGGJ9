@@ -36,13 +36,11 @@ func end_fight():
 	Ui.save.save_game()
 	Ui.toggle_element(Ui.interaction_button_bar)
 
-	if current_room.room_data.enemy_interactable_sprite:
-		var enemy_sprite_node = current_room.get_node("EnemySprites")
-		var enemy_sprites = enemy_sprite_node.get_children()
-		for sprite in enemy_sprites:
-			print_debug(sprite)
-			sprite.set_texture(null)
-	
+	var interactables = current_room.get_node("Interactables").get_children()
+	for interactable in interactables:
+		if interactable.interactable_data.enemy:
+			# interactable.interactable_data.sprite = null
+			interactable.sprite.set_texture(null)
 
 func create_spell_bar(character_data: CharacterData):
 	for spell in character_data.spells:

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpcoerie4vhby"]
+[gd_scene load_steps=2 format=3 uid="uid://dpcoerie4vhby"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_o0024"]
-[ext_resource type="PackedScene" uid="uid://cp767gfsrx1yl" path="res://Scenes/ReusableScenes/item.tscn" id="2_sg1ug"]
 
 [node name="Enemy" type="Node2D" groups=["enemy"]]
 position = Vector2(320, 179)
@@ -10,7 +9,3 @@ script = ExtResource("1_o0024")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Loot" type="Node2D" parent="."]
-
-[node name="Item" parent="Loot" instance=ExtResource("2_sg1ug")]
-item_name = "Sticky Key"
-item_examine_text = "It's a Sticky Key, maybe it unlocks the front door"

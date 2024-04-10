@@ -24,9 +24,10 @@ var dialogue_line
 #Items
 @onready var inventory_list = $CanvasLayer/GameUI/Inventory/InventoryList
 @onready var inventory_popup = $CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp
-@onready var items = $CanvasLayer/GameUI/Inventory/InventoryList/Items
+@onready var inventory_items = $CanvasLayer/GameUI/Inventory/InventoryList/Items
 var selected_item_popup_index;
 #Equipment
+@onready var equipment_items = $CanvasLayer/GameUI/Equipment/EquipmentList/Items
 @onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
 @onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
 var selected_equipment_popup_index;
@@ -82,9 +83,20 @@ func load_game():
 	toggle_element(game_ui)
 	SoundManager.lowerLastMusicVolume()
 	save = save.load_game()
+	for item in equipment_items.get_children():
+		item.queue_free()
+		await item.tree_exited
+	for item in inventory_items.get_children():
+		item.queue_free()
+		await item.tree_exited
+
+	InventoryManager.load_inventory()
+	EquipmentManager.load_equipment()
+
 	for room in save.rooms.values():
 		if room.current_scene:
-			SceneManager.change_scene(SceneManager.room_scenes[room.room_name])
+			var room_key = room.ROOM_NAMES.find_key(room.room_name)
+			SceneManager.change_scene(SceneManager.room_scenes[room_key])
 		
 func _on_new_game_pressed():
 	SoundManager.lowerLastMusicVolume()
@@ -251,8 +263,8 @@ func _on_delete_pressed():
 	if save.save_exists():
 		save.delete_save()
 
-func set_currentscene_label(_name:String):
-	$CanvasLayer/Debug/Label/currentScene.text = name
+func set_currentscene_label(scene_name: String):
+	$CanvasLayer/Debug/Label/currentScene.text = scene_name
 
 func _on_change_character_pressed():
 	#print_debug(protagonist)
@@ -264,12 +276,16 @@ func _on_change_character_pressed():
 		protagonist.show()
 
 func _on_inventory_pop_up_index_pressed(index):
-	if inventory_popup.get_item_text(index) == "Examine":
+	var popup_text = inventory_popup.get_item_text(index)
+	if popup_text == "Examine":
 		InventoryManager.examine_item(selected_item_popup_index)
-		return
-	InventoryManager.remove_item(selected_item_popup_index)
+	if popup_text == "Use/Equip":
+		InventoryManager.use_equip(selected_item_popup_index)
 	
 
 func _on_equipment_popup_index_pressed(index):
-	if equipment_popup.get_item_text(index) == "Examine":
+	var popup_text = equipment_popup.get_item_text(index)
+	if popup_text == "Examine":
 		EquipmentManager.examine_item(selected_equipment_popup_index)
+	if popup_text == "Unequip":
+		EquipmentManager.unequip(selected_equipment_popup_index)
