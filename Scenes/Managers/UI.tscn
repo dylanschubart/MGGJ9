@@ -573,10 +573,10 @@ texture_hover = ExtResource("9_u445k")
 
 [node name="Label" type="Label" parent="CanvasLayer/TitleScreen/VBoxContainer/Exit"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 5.0
-offset_right = 76.0
-offset_bottom = 28.0
+offset_left = 42.0
+offset_top = -7.0
+offset_right = 82.0
+offset_bottom = 16.0
 text = "Exit"
 
 [node name="Debug" type="Control" parent="CanvasLayer"]
