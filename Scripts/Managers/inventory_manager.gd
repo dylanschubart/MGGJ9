@@ -41,7 +41,6 @@ func examine_item(index):
 	var type = item_list[index].ITEM_TYPES.find_key(item_list[index].item_type)
 	LogManager.write_to_log("Item type: " + type)
 	LogManager.write_to_log(item_list[index].item_examine_text)
-	
 
 func use_equip(index: int):
 	var inventory_items = Ui.inventory_items.get_children()
