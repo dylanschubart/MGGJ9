@@ -365,6 +365,9 @@ item_1/id = 1
 
 [node name="Items" type="Node" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
 
+[node name="Item2" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
+item_data = SubResource("Resource_nm2de")
+
 [node name="Item" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
 item_data = SubResource("Resource_nm2de")
 
