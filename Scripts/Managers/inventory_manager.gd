@@ -24,6 +24,7 @@ func add_item(item_data: ItemData):
 	instantiated_item.item_data.item_in_inventory = true
 	instantiated_item.item_data.item_equiped = false
 	inventory_item_node.add_child(instantiated_item)
+	
 	set_inventory()
 	
 func remove_item_from_inventory(index: int):
