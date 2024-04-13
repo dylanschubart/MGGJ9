@@ -323,6 +323,9 @@ item_1/id = 1
 [node name="Item" parent="CanvasLayer/GameUI/Equipment/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
 item_data = SubResource("Resource_6n2t5")
 
+[node name="Item2" parent="CanvasLayer/GameUI/Equipment/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
+item_data = SubResource("Resource_6n2t5")
+
 [node name="Inventory" type="TextureButton" parent="CanvasLayer/GameUI"]
 layout_mode = 1
 anchors_preset = 8
