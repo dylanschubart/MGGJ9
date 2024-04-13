@@ -30,6 +30,7 @@ var selected_item_popup_index;
 @onready var equipment_items = $CanvasLayer/GameUI/Equipment/EquipmentList/Items
 @onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
 @onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
+@onready var new_equipment_popup = $CanvasLayer/GameUI/EquipmentRemastered/EquipmentPopup
 var selected_equipment_popup_index;
 
 @onready var interaction_button_bar = $CanvasLayer/GameUI/InteractionButtonBar
@@ -156,6 +157,9 @@ func _on_equipment_pressed():
 	toggle_element(equipment_list)
 	if inventory_list.is_visible():
 		toggle_element(inventory_list)
+
+func _on_weapon_pressed():
+	equipment_popup.popup()
 
 
 func _on_inventory_pressed():
@@ -289,3 +293,6 @@ func _on_equipment_popup_index_pressed(index):
 		EquipmentManager.examine_item(selected_equipment_popup_index)
 	if popup_text == "Unequip":
 		EquipmentManager.unequip(selected_equipment_popup_index)
+
+
+

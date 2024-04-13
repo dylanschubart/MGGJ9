@@ -217,13 +217,35 @@ texture = ExtResource("2_tmlwh")
 expand_mode = 1
 
 [node name="Log" type="RichTextLabel" parent="CanvasLayer/GameUI/LogBox"]
-layout_mode = 0
 offset_left = 13.0
-offset_top = 15.0
+offset_top = 16.0
 offset_right = 245.0
-offset_bottom = 95.0
+offset_bottom = 96.0
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
+scroll_following = true
+
+[node name="ArchiveLog" type="RichTextLabel" parent="CanvasLayer/GameUI/LogBox"]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 245.0
+offset_bottom = 81.0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "L"
+scroll_following = true
+
+[node name="CurrentLog" type="RichTextLabel" parent="CanvasLayer/GameUI/LogBox"]
+visible = false
+offset_left = 12.0
+offset_top = 82.0
+offset_right = 244.0
+offset_bottom = 96.0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "L"
 scroll_following = true
 
 [node name="nextChar" type="Timer" parent="CanvasLayer/GameUI/LogBox"]
@@ -280,7 +302,63 @@ character_name = "sidekick"
 spell_name = "Cure"
 heal = 5
 
+[node name="EquipmentRemastered" type="Node" parent="CanvasLayer/GameUI"]
+
+[node name="Weapon" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentRemastered"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 279.0
+offset_top = -30.0
+offset_right = 319.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Items" type="Node" parent="CanvasLayer/GameUI/EquipmentRemastered/Weapon"]
+
+[node name="Item" parent="CanvasLayer/GameUI/EquipmentRemastered/Weapon/Items" instance=ExtResource("11_0fm8u")]
+item_data = SubResource("Resource_6n2t5")
+
+[node name="Helmet" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentRemastered"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 279.0
+offset_top = -67.0
+offset_right = 319.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Items" type="Node" parent="CanvasLayer/GameUI/EquipmentRemastered/Helmet"]
+
+[node name="Item" parent="CanvasLayer/GameUI/EquipmentRemastered/Helmet/Items" instance=ExtResource("11_0fm8u")]
+item_data = SubResource("Resource_6n2t5")
+
+[node name="EquipmentPopup" type="PopupMenu" parent="CanvasLayer/GameUI/EquipmentRemastered"]
+position = Vector2i(389, 60)
+size = Vector2i(78, 50)
+theme_override_font_sizes/font_size = 12
+allow_search = false
+item_count = 2
+item_0/text = "Unequip"
+item_0/id = 0
+item_1/text = "Examine"
+item_1/id = 1
+
 [node name="Equipment" type="TextureButton" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -298,7 +376,6 @@ texture_hover = ExtResource("9_u445k")
 stretch_mode = 0
 
 [node name="EquipmentList" type="ItemList" parent="CanvasLayer/GameUI/Equipment"]
-visible = false
 layout_mode = 0
 offset_left = -118.0
 offset_top = -88.0
@@ -321,9 +398,6 @@ item_1/id = 1
 [node name="Items" type="Node" parent="CanvasLayer/GameUI/Equipment/EquipmentList"]
 
 [node name="Item" parent="CanvasLayer/GameUI/Equipment/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
-item_data = SubResource("Resource_6n2t5")
-
-[node name="Item2" parent="CanvasLayer/GameUI/Equipment/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
 item_data = SubResource("Resource_6n2t5")
 
 [node name="Inventory" type="TextureButton" parent="CanvasLayer/GameUI"]
@@ -367,9 +441,6 @@ item_1/text = "Examine"
 item_1/id = 1
 
 [node name="Items" type="Node" parent="CanvasLayer/GameUI/Inventory/InventoryList"]
-
-[node name="Item2" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
-item_data = SubResource("Resource_nm2de")
 
 [node name="Item" parent="CanvasLayer/GameUI/Inventory/InventoryList/Items" instance=ExtResource("11_0fm8u")]
 item_data = SubResource("Resource_nm2de")
@@ -634,6 +705,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Change Character"
 
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentRemastered/Weapon" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentRemastered/Weapon" to="." method="_on_weapon_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentRemastered/Helmet" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentRemastered/Helmet" to="." method="_on_weapon_pressed"]
+[connection signal="index_pressed" from="CanvasLayer/GameUI/EquipmentRemastered/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Equipment" to="." method="_on_equipment_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
 [connection signal="index_pressed" from="CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]
