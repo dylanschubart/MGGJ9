@@ -285,7 +285,7 @@ script = null
 
 [node name="EquipmentPopup" type="PopupMenu" parent="CanvasLayer/GameUI/EquipmentList"]
 position = Vector2i(389, 60)
-size = Vector2i(78, 50)
+size = Vector2i(79, 50)
 visible = true
 theme_override_font_sizes/font_size = 12
 allow_search = false
@@ -296,7 +296,6 @@ item_1/text = "Examine"
 item_1/id = 1
 
 [node name="Weapon" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -308,7 +307,6 @@ offset_right = -83.0
 offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-disabled = true
 texture_normal = ExtResource("5_28ulr")
 texture_hover = ExtResource("9_u445k")
 texture_disabled = ExtResource("9_u445k")
@@ -748,7 +746,7 @@ theme_override_font_sizes/font_size = 8
 text = "Change Character"
 
 [connection signal="index_pressed" from="CanvasLayer/GameUI/EquipmentList/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Weapon" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Weapon" to="." method="_on_weapon_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Helmet" to="." method="_on_equipment_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Chest" to="." method="_on_equipment_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Pants" to="." method="_on_equipment_pressed"]

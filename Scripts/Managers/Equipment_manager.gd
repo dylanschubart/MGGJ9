@@ -3,7 +3,6 @@ extends Node
 var equipment_list: Array[ItemData] = []
 
 func set_equipment():
-	Ui.equipment_list.clear()
 	equipment_list.clear()
 
 	var items_nodes = Ui.equipment_items.get_children()
@@ -77,11 +76,11 @@ func unequip(type: String):
 	var unequiped_item;
 
 	for item in equipment_items:
-		if item.ITEM_TYPES.find_key(item.item_type) == type:
-			unequiped_item = item
+		if item.item_data.ITEM_TYPES.find_key(item.item_data.item_type) == type:
+			unequiped_item = item.item_data
 
-	print_debug(unequiped_item.item_data.item_name)
-	InventoryManager.add_item(unequiped_item.item_data)
+	print_debug(unequiped_item.item_name)
+	InventoryManager.add_item(unequiped_item)
 	remove_item_from_equipment(unequiped_item)
 
 func load_equipment():

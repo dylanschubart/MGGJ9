@@ -169,7 +169,24 @@ func _on_inventory_pressed():
 	if equipment_list.is_visible():
 		toggle_element(equipment_list)
 
+func _on_inventory_pop_up_index_pressed(index):
+	var popup_text = inventory_popup.get_item_text(index)
+	if popup_text == "Examine":
+		InventoryManager.examine_item(selected_item_popup_index)
+	if popup_text == "Use/Equip":
+		InventoryManager.use_equip(selected_item_popup_index)
+	
+
+
+
 #-----------------EQUIPMENT---------------------
+func _on_equipment_popup_index_pressed(index):
+	var popup_text = equipment_popup.get_item_text(index)
+	if popup_text == "Examine":
+		EquipmentManager.examine_item(selected_equipment_popup_type)
+	if popup_text == "Unequip":
+		EquipmentManager.unequip(selected_equipment_popup_type)
+
 func _on_weapon_pressed():
 	equipment_popup.popup()
 	selected_equipment_popup_type = "Weapon"
@@ -287,18 +304,3 @@ func _on_change_character_pressed():
 	else:
 		side_character.hide()
 		protagonist.show()
-
-func _on_inventory_pop_up_index_pressed(index):
-	var popup_text = inventory_popup.get_item_text(index)
-	if popup_text == "Examine":
-		InventoryManager.examine_item(selected_item_popup_index)
-	if popup_text == "Use/Equip":
-		InventoryManager.use_equip(selected_item_popup_index)
-	
-
-func _on_equipment_popup_index_pressed(index):
-	var popup_text = equipment_popup.get_item_text(index)
-	if popup_text == "Examine":
-		EquipmentManager.examine_item(selected_equipment_popup_type)
-	if popup_text == "Unequip":
-		EquipmentManager.unequip(selected_equipment_popup_type)
