@@ -280,7 +280,123 @@ character_name = "sidekick"
 spell_name = "Cure"
 heal = 5
 
+[node name="EquipmentList" parent="CanvasLayer/GameUI" instance=ExtResource("11_0fm8u")]
+script = null
+
+[node name="EquipmentPopup" type="PopupMenu" parent="CanvasLayer/GameUI/EquipmentList"]
+position = Vector2i(389, 60)
+size = Vector2i(78, 50)
+visible = true
+theme_override_font_sizes/font_size = 12
+allow_search = false
+item_count = 2
+item_0/text = "Unequip"
+item_0/id = 0
+item_1/text = "Examine"
+item_1/id = 1
+
+[node name="Weapon" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -51.0
+offset_right = -83.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+texture_disabled = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Helmet" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -91.0
+offset_right = -21.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+texture_disabled = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Chest" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -54.0
+offset_right = -23.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+texture_disabled = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Pants" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -17.0
+offset_right = -27.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+texture_disabled = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Boots" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 20.0
+offset_right = -26.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("5_28ulr")
+texture_hover = ExtResource("9_u445k")
+texture_disabled = ExtResource("9_u445k")
+stretch_mode = 0
+
+[node name="Items" type="Node" parent="CanvasLayer/GameUI/EquipmentList"]
+
+[node name="Item" parent="CanvasLayer/GameUI/EquipmentList/Items" instance=ExtResource("11_0fm8u")]
+item_data = SubResource("Resource_6n2t5")
+
 [node name="Equipment" type="TextureButton" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -631,6 +747,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Change Character"
 
+[connection signal="index_pressed" from="CanvasLayer/GameUI/EquipmentList/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Weapon" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Helmet" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Chest" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Pants" to="." method="_on_equipment_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/EquipmentList/Boots" to="." method="_on_equipment_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/Equipment" to="." method="_on_equipment_pressed"]
 [connection signal="item_selected" from="CanvasLayer/GameUI/Equipment/EquipmentList" to="." method="_on_equipment_list_item_selected"]
 [connection signal="index_pressed" from="CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup" to="." method="_on_equipment_popup_index_pressed"]

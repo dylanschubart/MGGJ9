@@ -23,14 +23,19 @@ var dialogue_line
 
 #Items
 @onready var inventory_list = $CanvasLayer/GameUI/Inventory/InventoryList
-@onready var inventory_popup = $CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp
 @onready var inventory_items = $CanvasLayer/GameUI/Inventory/InventoryList/Items
+@onready var inventory_popup = $CanvasLayer/GameUI/Inventory/InventoryList/InventoryPopUp
 var selected_item_popup_index;
 #Equipment
-@onready var equipment_items = $CanvasLayer/GameUI/Equipment/EquipmentList/Items
-@onready var equipment_list = $CanvasLayer/GameUI/Equipment/EquipmentList
-@onready var equipment_popup = $CanvasLayer/GameUI/Equipment/EquipmentList/EquipmentPopup
-var selected_equipment_popup_index;
+@onready var equipment_list = $CanvasLayer/GameUI/EquipmentList
+@onready var equipment_items = $CanvasLayer/GameUI/EquipmentList/Items
+@onready var equipment_weapon = $CanvasLayer/GameUI/EquipmentList/Weapon
+@onready var equipment_helmet = $CanvasLayer/GameUI/EquipmentList/Helmet
+@onready var equipment_chest = $CanvasLayer/GameUI/EquipmentList/Chest
+@onready var equipment_pants = $CanvasLayer/GameUI/EquipmentList/Pants
+@onready var equipment_boots = $CanvasLayer/GameUI/EquipmentList/Boots
+@onready var equipment_popup = $CanvasLayer/GameUI/EquipmentList/EquipmentPopup
+var selected_equipment_popup_type;
 
 @onready var interaction_button_bar = $CanvasLayer/GameUI/InteractionButtonBar
 @onready var title_screen = $CanvasLayer/TitleScreen
@@ -83,9 +88,10 @@ func load_game():
 	toggle_element(game_ui)
 	SoundManager.lowerLastMusicVolume()
 	save = save.load_game()
-	for item in equipment_items.get_children():
-		item.queue_free()
-		await item.tree_exited
+	for equipType in equipment_list.get_children():
+		for item in equipType.get_children():
+			item.queue_free()
+			await item.tree_exited
 	for item in inventory_items.get_children():
 		item.queue_free()
 		await item.tree_exited
@@ -149,7 +155,7 @@ func _on_inventory_list_item_selected(index):
 func _on_equipment_list_item_selected(index):
 	equipment_popup.popup()
 	print_debug(index)
-	selected_equipment_popup_index = index
+	#selected_equipment_popup_index = index
 
 
 func _on_equipment_pressed():
@@ -162,6 +168,13 @@ func _on_inventory_pressed():
 	toggle_element(inventory_list)
 	if equipment_list.is_visible():
 		toggle_element(equipment_list)
+
+#-----------------EQUIPMENT---------------------
+func _on_weapon_pressed():
+	equipment_popup.popup()
+	selected_equipment_popup_type = "Weapon"
+
+#-----------------EQUIPMENT---------------------
 
 # --------> INTERACTIONBUTTONBAR ACTIONS
 func _on_examine_enemy_mouse_entered():
@@ -286,6 +299,6 @@ func _on_inventory_pop_up_index_pressed(index):
 func _on_equipment_popup_index_pressed(index):
 	var popup_text = equipment_popup.get_item_text(index)
 	if popup_text == "Examine":
-		EquipmentManager.examine_item(selected_equipment_popup_index)
+		EquipmentManager.examine_item(selected_equipment_popup_type)
 	if popup_text == "Unequip":
-		EquipmentManager.unequip(selected_equipment_popup_index)
+		EquipmentManager.unequip(selected_equipment_popup_type)
