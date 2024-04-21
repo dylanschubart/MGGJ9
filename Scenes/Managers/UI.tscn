@@ -313,7 +313,6 @@ texture_disabled = ExtResource("9_u445k")
 stretch_mode = 0
 
 [node name="Helmet" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -332,7 +331,6 @@ texture_disabled = ExtResource("9_u445k")
 stretch_mode = 0
 
 [node name="Chest" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -351,7 +349,6 @@ texture_disabled = ExtResource("9_u445k")
 stretch_mode = 0
 
 [node name="Pants" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -370,7 +367,6 @@ texture_disabled = ExtResource("9_u445k")
 stretch_mode = 0
 
 [node name="Boots" type="TextureButton" parent="CanvasLayer/GameUI/EquipmentList"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
